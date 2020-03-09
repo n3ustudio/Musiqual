@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +64,13 @@ namespace Musiqual.Parameter.Controls
         public EditMode EditMode
         {
             get => (EditMode) GetValue(EditModeProperty);
-            set => SetValue(EditModeProperty, value);
+            set
+            {
+                EditMode old = (EditMode) GetValue(EditModeProperty);
+                if (!(old is null)) old.PropertyChanged -= EditModeOnPropertyChanged;
+                SetValue(EditModeProperty, value);
+                EditMode.PropertyChanged += EditModeOnPropertyChanged;
+            }
         }
 
         #endregion

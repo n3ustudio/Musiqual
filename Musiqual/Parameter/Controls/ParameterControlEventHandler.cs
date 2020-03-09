@@ -61,7 +61,7 @@ namespace Musiqual.Parameter.Controls
             if (e.Key == Key.Escape)
             {
                 if (IsMouseCaptured) ReleaseMouseCapture();
-                // TODO: Clear Drag/Select State
+                ResetControlState();
                 e.Handled = true;
                 return;
             }
