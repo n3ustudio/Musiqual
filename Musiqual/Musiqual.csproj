@@ -81,6 +81,9 @@
     <Compile Include="Parameter\Controls\ParameterControl.xaml.cs">
       <DependentUpon>ParameterControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Parameter\Controls\ParameterControlEventHandler.cs">
+      <DependentUpon>ParameterControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Parameter\ParameterData.cs" />
     <Compile Include="Parameter\Views\ParameterView.xaml.cs">
       <DependentUpon>ParameterView.xaml</DependentUpon>

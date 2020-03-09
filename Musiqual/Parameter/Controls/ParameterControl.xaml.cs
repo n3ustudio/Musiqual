@@ -58,38 +58,5 @@ namespace Musiqual.Parameter.Controls
 
         #endregion
 
-        private void ParameterControl_OnMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
-                if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
-                    if (e.Delta > 0)
-                        HorizontalScross.ZoomIn();
-                    else
-                        HorizontalScross.ZoomOut();
-                else
-                {
-                    if (e.Delta > 0)
-                        VerticalScross.ZoomIn();
-                    else
-                        VerticalScross.ZoomOut();
-                }
-            else
-            {
-                if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
-                    if (e.Delta > 0)
-                        HorizontalScross.ScrollDelta();
-                    else
-                        HorizontalScross.ScrollDelta(false);
-                else
-                {
-                    if (e.Delta > 0)
-                        VerticalScross.ScrollDelta();
-                    else
-                        VerticalScross.ScrollDelta(false);
-                }
-            }
-
-            e.Handled = true;
-        }
     }
 }

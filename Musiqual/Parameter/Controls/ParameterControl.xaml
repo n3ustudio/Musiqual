@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Musiqual.Parameter.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             MouseWheel="ParameterControl_OnMouseWheel">
+             MouseWheel="ParameterControl_OnMouseWheel"
+             KeyDown="ParameterControl_OnKeyDown">
     <Grid>
             
     </Grid>
