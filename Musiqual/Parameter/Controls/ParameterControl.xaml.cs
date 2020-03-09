@@ -35,8 +35,8 @@ namespace Musiqual.Parameter.Controls
 
         public ParameterData ParameterData
         {
-            get { return (ParameterData)GetValue(ParameterDataProperty); }
-            set { SetValue(ParameterDataProperty, value); }
+            get => (ParameterData)GetValue(ParameterDataProperty);
+            set => SetValue(ParameterDataProperty, value);
         }
 
         public static readonly DependencyProperty VerticalScrossProperty = DependencyProperty.Register(
@@ -44,8 +44,8 @@ namespace Musiqual.Parameter.Controls
 
         public Scross VerticalScross
         {
-            get { return (Scross)GetValue(VerticalScrossProperty); }
-            set { SetValue(VerticalScrossProperty, value); }
+            get => (Scross)GetValue(VerticalScrossProperty);
+            set => SetValue(VerticalScrossProperty, value);
         }
 
         public static readonly DependencyProperty HorizontalScrossProperty = DependencyProperty.Register(
@@ -53,8 +53,8 @@ namespace Musiqual.Parameter.Controls
 
         public Scross HorizontalScross
         {
-            get { return (Scross)GetValue(HorizontalScrossProperty); }
-            set { SetValue(HorizontalScrossProperty, value); }
+            get => (Scross)GetValue(HorizontalScrossProperty);
+            set => SetValue(HorizontalScrossProperty, value);
         }
 
         public static readonly DependencyProperty EditModeProperty = DependencyProperty.Register(
@@ -62,8 +62,8 @@ namespace Musiqual.Parameter.Controls
 
         public EditMode EditMode
         {
-            get { return (EditMode) GetValue(EditModeProperty); }
-            set { SetValue(EditModeProperty, value); }
+            get => (EditMode) GetValue(EditModeProperty);
+            set => SetValue(EditModeProperty, value);
         }
 
         #endregion
