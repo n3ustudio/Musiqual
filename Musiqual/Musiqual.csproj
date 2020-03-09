@@ -72,10 +72,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Parameter\Views\ParameterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parameter\Controls\ParameterControl.xaml.cs">
       <DependentUpon>ParameterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Parameter\Views\ParameterView.xaml.cs">
+      <DependentUpon>ParameterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
