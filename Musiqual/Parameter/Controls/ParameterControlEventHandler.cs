@@ -60,11 +60,20 @@ namespace Musiqual.Parameter.Controls
         {
             if (e.Key == Key.Escape)
             {
-                if (IsMouseCaptured) ReleaseMouseCapture();
                 ResetControlState();
                 e.Handled = true;
                 return;
             }
+        }
+
+        private void ParameterControl_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ParameterControl_OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
 
     }

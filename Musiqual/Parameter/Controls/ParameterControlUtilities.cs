@@ -25,7 +25,7 @@ namespace Musiqual.Parameter.Controls
 
         private void ResetControlState()
         {
-
+            if (IsMouseCaptured) ReleaseMouseCapture();
         }
 
         private void EditModeOnPropertyChanged(object sender, PropertyChangedEventArgs e)

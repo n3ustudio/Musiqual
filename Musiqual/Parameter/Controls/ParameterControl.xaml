@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              MouseWheel="ParameterControl_OnMouseWheel"
-             KeyDown="ParameterControl_OnKeyDown">
+             KeyDown="ParameterControl_OnKeyDown"
+             MouseLeftButtonDown="ParameterControl_OnMouseLeftButtonDown"
+             MouseRightButtonDown="ParameterControl_OnMouseRightButtonDown">
     <Grid>
             
     </Grid>
