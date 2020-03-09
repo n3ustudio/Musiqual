@@ -4,9 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Musiqual.Parameter.Views"
+             xmlns:controls="clr-namespace:Musiqual.Parameter.Controls"
              mc:Ignorable="d" 
+             FontFamily="Segoe UI"
+             Background="{DynamicResource ThemeBrushKey}"
+             Foreground="White"
+             SnapsToDevicePixels="True"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="6" Orientation="Horizontal">
+            <TextBlock Margin="6" Text="Parameter:" VerticalAlignment="Center"/>
+            <ComboBox Margin="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
+        <controls:ParameterControl Grid.Row="1"/>
     </Grid>
 </UserControl>

@@ -12,17 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YDock.Interface;
 
 namespace Musiqual.Parameter.Views
 {
     /// <summary>
     /// ParameterView.xaml 的交互逻辑
     /// </summary>
-    public partial class ParameterView : UserControl
+    public partial class ParameterView : UserControl, IDockSource
     {
         public ParameterView()
         {
             InitializeComponent();
         }
+
+        public IDockControl DockControl { get; set; }
+        public string Header => "Parameter";
+        public ImageSource Icon => null;
     }
 }
