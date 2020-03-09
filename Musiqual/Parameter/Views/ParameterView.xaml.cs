@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Scrosser.Models;
 using YDock.Interface;
 
 namespace Musiqual.Parameter.Views
@@ -19,15 +22,80 @@ namespace Musiqual.Parameter.Views
     /// <summary>
     /// ParameterView.xaml 的交互逻辑
     /// </summary>
-    public partial class ParameterView : UserControl, IDockSource
+    public partial class ParameterView : UserControl, IDockSource, INotifyPropertyChanged
     {
-        public ParameterView()
+        public ParameterView(ParameterData data, Scross scross)
         {
+
             InitializeComponent();
+
+            if (data is null) data = new ParameterData();
+            ParameterData = data;
+            if (scross is null) scross = new Scross();
+            HorizontalScross = scross;
+
+            DataContext = this;
+
         }
 
+        #region DockControl
+        
         public IDockControl DockControl { get; set; }
         public string Header => "Parameter";
         public ImageSource Icon => null;
+
+        #endregion
+
+        #region DataContext
+
+        private Scross _verticalScross = new Scross();
+
+        public Scross VerticalScross
+        {
+            get => _verticalScross;
+            set
+            {
+                _verticalScross = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Scross _horizontalScross;
+
+        public Scross HorizontalScross
+        {
+            get => _horizontalScross;
+            set
+            {
+                _horizontalScross = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ParameterData _parameterData;
+
+        public ParameterData ParameterData
+        {
+            get => _parameterData;
+            set
+            {
+                _parameterData = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
     }
 }
