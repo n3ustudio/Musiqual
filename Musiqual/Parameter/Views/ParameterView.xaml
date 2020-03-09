@@ -29,7 +29,8 @@
             <controls:ParameterControl
                 ParameterData="{Binding ParameterData}"
                 VerticalScross="{Binding VerticalScross}"
-                HorizontalScross="{Binding HorizontalScross}"/>
+                HorizontalScross="{Binding HorizontalScross}"
+                EditMode="{Binding EditMode}"/>
             <scrosser:VerticalNavigator Scross="{Binding VerticalScross}" Grid.Column="1"/>
         </Grid>
     </Grid>

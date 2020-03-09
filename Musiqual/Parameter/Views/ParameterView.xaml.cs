@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Musiqual.Editor.Models;
 using Scrosser.Models;
 using YDock.Interface;
 
@@ -24,7 +25,7 @@ namespace Musiqual.Parameter.Views
     /// </summary>
     public partial class ParameterView : UserControl, IDockSource, INotifyPropertyChanged
     {
-        public ParameterView(ParameterData data, Scross scross)
+        public ParameterView(ParameterData data, Scross scross, EditMode editMode)
         {
 
             InitializeComponent();
@@ -33,6 +34,8 @@ namespace Musiqual.Parameter.Views
             ParameterData = data;
             if (scross is null) scross = new Scross();
             HorizontalScross = scross;
+            if (editMode is null) editMode = new EditMode();
+            EditMode = editMode;
 
             DataContext = this;
 
@@ -80,6 +83,18 @@ namespace Musiqual.Parameter.Views
             set
             {
                 _parameterData = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private EditMode _editMode;
+
+        public EditMode EditMode
+        {
+            get => _editMode;
+            set
+            {
+                _editMode = value;
                 OnPropertyChanged();
             }
         }

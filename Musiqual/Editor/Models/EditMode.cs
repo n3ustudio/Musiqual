@@ -12,7 +12,7 @@ namespace Musiqual.Editor.Models
     public class EditMode : INotifyPropertyChanged
     {
 
-        EditMode(EditModeEnum mode = 0)
+        public EditMode(EditModeEnum mode = 0)
         {
             Mode = mode;
         }

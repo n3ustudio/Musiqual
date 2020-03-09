@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Musiqual.Editor.Models;
 using Scrosser.Models;
 
 namespace Musiqual.Parameter.Controls
@@ -54,6 +55,15 @@ namespace Musiqual.Parameter.Controls
         {
             get { return (Scross)GetValue(HorizontalScrossProperty); }
             set { SetValue(HorizontalScrossProperty, value); }
+        }
+
+        public static readonly DependencyProperty EditModeProperty = DependencyProperty.Register(
+            "EditMode", typeof(EditMode), typeof(ParameterControl), new PropertyMetadata(default(EditMode)));
+
+        public EditMode EditMode
+        {
+            get { return (EditMode) GetValue(EditModeProperty); }
+            set { SetValue(EditModeProperty, value); }
         }
 
         #endregion
