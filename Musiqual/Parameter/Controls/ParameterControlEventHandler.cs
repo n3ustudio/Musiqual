@@ -101,6 +101,19 @@ namespace Musiqual.Parameter.Controls
         
         private void ParameterControl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            if (!IsMouseDown) return;
+            switch (EditMode.Mode)
+            {
+                case EditModeEnum.Pencil: // Break
+                    break;
+                case EditModeEnum.Eraser: // Break
+                    break;
+                default: // Select
+                {
+                    
+                    break;
+                }
+            }
             ResetControlState();
         }
 

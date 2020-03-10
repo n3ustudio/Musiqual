@@ -25,7 +25,7 @@ namespace Musiqual.Parameter
             IsNatural = isNatural;
             Name = name;
             Total = parameterList.Count;
-            ObservableCollection<KeyValuePair<int, double>> collection = new ObservableCollection<KeyValuePair<int, double>>();
+            ObservableCollection<Models.Parameter> collection = new ObservableCollection<Models.Parameter>();
             int index = 0;
             double prev = 0;
             foreach (double d in parameterList)
@@ -33,7 +33,7 @@ namespace Musiqual.Parameter
                 if (index == 0)
                 {
                     prev = d;
-                    collection.Add(new KeyValuePair<int, double>(index, d));
+                    collection.Add(new Models.Parameter(index, d));
                     index++;
                     continue;
                 }
@@ -45,7 +45,7 @@ namespace Musiqual.Parameter
                 }
 
                 prev = d;
-                collection.Add(new KeyValuePair<int, double>(index, d));
+                collection.Add(new Models.Parameter(index, d));
                 index++;
             }
             ParameterList = collection;
@@ -59,9 +59,9 @@ namespace Musiqual.Parameter
 
         public bool Rendered { get; set; } = false;
 
-        private ObservableCollection<KeyValuePair<int, double>> _parameterList = new ObservableCollection<KeyValuePair<int, double>>();
+        private ObservableCollection<Models.Parameter> _parameterList = new ObservableCollection<Models.Parameter>();
 
-        public ObservableCollection<KeyValuePair<int, double>> ParameterList
+        public ObservableCollection<Models.Parameter> ParameterList
         {
             get => _parameterList;
             set

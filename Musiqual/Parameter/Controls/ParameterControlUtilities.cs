@@ -59,7 +59,7 @@ namespace Musiqual.Parameter.Controls
 
         private bool IsMouseDown { get; set; }
 
-        private double? _rectStartState = null;
+        private double? _rectStartState;
 
         #endregion
 
