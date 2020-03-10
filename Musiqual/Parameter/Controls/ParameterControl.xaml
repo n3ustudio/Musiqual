@@ -13,9 +13,16 @@
              MouseWheel="ParameterControl_OnMouseWheel"
              KeyDown="ParameterControl_OnKeyDown"
              MouseLeftButtonDown="ParameterControl_OnMouseLeftButtonDown"
+             MouseLeftButtonUp="ParameterControl_OnMouseLeftButtonUp"
              MouseRightButtonDown="ParameterControl_OnMouseRightButtonDown"
-             MouseMove="ParameterControl_OnMouseMove">
+             MouseMove="ParameterControl_OnMouseMove"
+             LostMouseCapture="ParameterControl_OnLostMouseCapture">
     <Grid>
-        <Canvas x:Name="FrameDrag" IsHitTestVisible="False" Visibility="Collapsed" Background="Red"/>
+        <Canvas x:Name="FrameDrag" IsHitTestVisible="False" Visibility="Collapsed"
+                Width="0" Background="Red" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+            <Canvas.Margin>
+                <Thickness x:Name="FrameDragMargin"/>
+            </Canvas.Margin>
+        </Canvas>
     </Grid>
 </UserControl>

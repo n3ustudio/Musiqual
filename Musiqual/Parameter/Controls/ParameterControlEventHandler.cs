@@ -70,6 +70,7 @@ namespace Musiqual.Parameter.Controls
         private void ParameterControl_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsMouseDown) return;
+            IsMouseDown = true;
         }
 
         private void ParameterControl_OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
@@ -91,8 +92,21 @@ namespace Musiqual.Parameter.Controls
                 case EditModeEnum.Eraser:
                     break;
                 default: // Arrow
+                {
+                    DragRect(position.X);
                     break;
+                }
             }
+        }
+        
+        private void ParameterControl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ResetControlState();
+        }
+
+        private void ParameterControl_OnLostMouseCapture(object sender, MouseEventArgs e)
+        {
+            ResetControlState();
         }
 
     }

@@ -25,6 +25,9 @@ namespace Musiqual.Parameter.Controls
 
         private void ResetControlState()
         {
+            FrameDrag.Visibility = Visibility.Collapsed;
+            _rectStartState = null;
+            FrameDrag.Width = 0;
             IsMouseDown = false;
             if (IsMouseCaptured) ReleaseMouseCapture();
         }
@@ -33,10 +36,30 @@ namespace Musiqual.Parameter.Controls
         {
             ResetControlState();
         }
-        
+
+        #region FrameRect
+
+        private void DragRect(double x)
+        {
+            if (_rectStartState is null)
+            {
+                FrameDrag.Visibility = Visibility.Visible;
+                _rectStartState = x;
+                return;
+            }
+
+            FrameDragMargin.Left = Math.Min(x, (double)_rectStartState);
+            FrameDrag.Width = Math.Abs(x - (double)_rectStartState);
+
+        }
+
+        #endregion
+
         #region DataContext
 
-        public bool IsMouseDown { get; set; }
+        private bool IsMouseDown { get; set; }
+
+        private double? _rectStartState = null;
 
         #endregion
 
