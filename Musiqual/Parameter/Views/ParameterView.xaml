@@ -17,10 +17,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="6" Orientation="Horizontal">
+        <!--<StackPanel Margin="6" Orientation="Horizontal">
             <TextBlock Margin="6" Text="Parameter:" VerticalAlignment="Center"/>
             <ComboBox Margin="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        </StackPanel>
+        </StackPanel>-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

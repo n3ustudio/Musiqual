@@ -27,15 +27,15 @@ namespace Musiqual.Parameter.Views
     {
         public ParameterView(ParameterData data, Scross scross, EditMode editMode)
         {
-
-            InitializeComponent();
-
             if (data is null) data = new ParameterData();
+            Header = data.Name + " - Parameter";
             ParameterData = data;
             if (scross is null) scross = new Scross();
             HorizontalScross = scross;
             if (editMode is null) editMode = new EditMode();
             EditMode = editMode;
+
+            InitializeComponent();
 
             DataContext = this;
 
@@ -44,7 +44,7 @@ namespace Musiqual.Parameter.Views
         #region DockControl
         
         public IDockControl DockControl { get; set; }
-        public string Header => "Parameter";
+        public string Header { get; }
         public ImageSource Icon => null;
 
         #endregion
