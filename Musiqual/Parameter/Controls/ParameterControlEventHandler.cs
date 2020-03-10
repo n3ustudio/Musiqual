@@ -81,6 +81,13 @@ namespace Musiqual.Parameter.Controls
         private void ParameterControl_OnMouseMove(object sender, MouseEventArgs e)
         {
             Point position = e.GetPosition(this);
+
+            #region Target Update
+
+            // TODO
+
+            #endregion
+
             if (!IsMouseDown)
             {
                 // Idle

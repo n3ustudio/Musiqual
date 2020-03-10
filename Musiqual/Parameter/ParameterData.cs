@@ -60,8 +60,6 @@ namespace Musiqual.Parameter
 
         public int Total { get; }
 
-        public bool Rendered { get; set; } = false;
-
         private ObservableCollection<Models.Parameter> _parameterList = new ObservableCollection<Models.Parameter>();
 
         public ObservableCollection<Models.Parameter> ParameterList

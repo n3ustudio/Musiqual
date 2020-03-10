@@ -61,6 +61,8 @@ namespace Musiqual.Parameter.Controls
 
         private double? _rectStartState;
 
+        private Models.Parameter _target { get; set; }
+
         #endregion
 
     }
