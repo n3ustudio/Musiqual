@@ -13,9 +13,16 @@ namespace Musiqual.Models
     public abstract class MusiqualControl : Control, INotifyPropertyChanged
     {
 
-        public MusiqualControl(long position)
+        public MusiqualControl(
+            long position,
+            double viewTotal,
+            double viewMin,
+            double viewMax)
         {
             _position = position;
+            _viewTotal = viewTotal;
+            _viewMin = viewMin;
+            _viewMax = viewMax;
         }
 
         #region DataContext
@@ -28,6 +35,42 @@ namespace Musiqual.Models
             set
             {
                 _position = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _viewTotal;
+
+        public double ViewTotal
+        {
+            get => _viewTotal;
+            set
+            {
+                _viewTotal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _viewMin;
+
+        public double ViewMin
+        {
+            get => _viewMin;
+            set
+            {
+                _viewMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _viewMax;
+
+        public double ViewMax
+        {
+            get => _viewMax;
+            set
+            {
+                _viewMax = value;
                 OnPropertyChanged();
             }
         }

@@ -20,7 +20,10 @@ namespace Musiqual.Parameter
             bool isNatural = false,
             string name = "Undefined",
             List<double> parameterList = null,
-            double tolerance = 0.1)
+            double tolerance = 0.1,
+            double viewTotal = 500,
+            double viewMin = 0,
+            double viewMax = 500)
         {
             IsNatural = isNatural;
             Name = name;
@@ -33,7 +36,7 @@ namespace Musiqual.Parameter
                 if (index == 0)
                 {
                     prev = d;
-                    collection.Add(new Models.Parameter(index, d));
+                    collection.Add(new Models.Parameter(index, d, viewTotal, viewMin, viewMax));
                     index++;
                     continue;
                 }
@@ -45,7 +48,7 @@ namespace Musiqual.Parameter
                 }
 
                 prev = d;
-                collection.Add(new Models.Parameter(index, d));
+                collection.Add(new Models.Parameter(index, d, viewTotal, viewMin, viewMax));
                 index++;
             }
             ParameterList = collection;
