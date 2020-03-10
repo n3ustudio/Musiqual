@@ -25,6 +25,7 @@ namespace Musiqual.Parameter.Controls
 
         private void ResetControlState()
         {
+            IsMouseDown = false;
             if (IsMouseCaptured) ReleaseMouseCapture();
         }
 
@@ -32,6 +33,12 @@ namespace Musiqual.Parameter.Controls
         {
             ResetControlState();
         }
+        
+        #region DataContext
+
+        public bool IsMouseDown { get; set; }
+
+        #endregion
 
     }
 }

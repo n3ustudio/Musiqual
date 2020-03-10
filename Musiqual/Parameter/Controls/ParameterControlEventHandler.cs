@@ -69,12 +69,12 @@ namespace Musiqual.Parameter.Controls
 
         private void ParameterControl_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (IsMouseDown) return;
         }
 
         private void ParameterControl_OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            // Ignore
         }
 
         private void ParameterControl_OnMouseMove(object sender, MouseEventArgs e)

@@ -75,11 +75,5 @@ namespace Musiqual.Parameter.Controls
 
         #endregion
 
-        #region DataContext
-
-        public bool IsMouseDown { get; set; } = false;
-
-        #endregion
-
     }
 }
