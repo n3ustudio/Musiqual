@@ -16,10 +16,14 @@ namespace Musiqual.Parameter
     public class ParameterData : INotifyPropertyChanged
     {
 
-        public ParameterData(bool isNatural = false, string name = "Undefined")
+        public ParameterData(
+            bool isNatural = false,
+            string name = "Undefined",
+            ObservableCollection<double> parameterList = null)
         {
             IsNatural = isNatural;
             Name = name;
+            ParameterList = parameterList;
         }
 
         public bool IsNatural { get; }
