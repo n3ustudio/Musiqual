@@ -25,12 +25,12 @@ namespace Musiqual.Parameter.Views
     /// </summary>
     public partial class ParameterView : UserControl, IDockSource, INotifyPropertyChanged
     {
-        public ParameterView(ParameterData data, Scross scross, EditMode editMode)
+        public ParameterView(IParameterData data, Scross scross, EditMode editMode)
         {
 
             InitializeComponent();
 
-            if (data is null) data = new ParameterData();
+            if (data is null) data = new NormalParameterData();
             ParameterData = data;
             if (scross is null) scross = new Scross();
             HorizontalScross = scross;
@@ -75,9 +75,9 @@ namespace Musiqual.Parameter.Views
             }
         }
 
-        private ParameterData _parameterData;
+        private IParameterData _parameterData;
 
-        public ParameterData ParameterData
+        public IParameterData ParameterData
         {
             get => _parameterData;
             set

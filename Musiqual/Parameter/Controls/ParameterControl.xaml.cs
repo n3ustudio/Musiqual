@@ -32,11 +32,11 @@ namespace Musiqual.Parameter.Controls
         #region DependencyProperty
 
         public static readonly DependencyProperty ParameterDataProperty = DependencyProperty.Register(
-            "ParameterData", typeof(ParameterData), typeof(ParameterControl), new PropertyMetadata(default(ParameterData)));
+            "ParameterData", typeof(IParameterData), typeof(ParameterControl), new PropertyMetadata(new NormalParameterData()));
 
-        public ParameterData ParameterData
+        public IParameterData ParameterData
         {
-            get => (ParameterData)GetValue(ParameterDataProperty);
+            get => (IParameterData)GetValue(ParameterDataProperty);
             set => SetValue(ParameterDataProperty, value);
         }
 
@@ -72,6 +72,12 @@ namespace Musiqual.Parameter.Controls
                 EditMode.PropertyChanged += EditModeOnPropertyChanged;
             }
         }
+
+        #endregion
+
+        #region DataContext
+
+        public bool IsMouseDown { get; set; } = false;
 
         #endregion
 
