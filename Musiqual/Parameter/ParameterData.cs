@@ -19,22 +19,49 @@ namespace Musiqual.Parameter
         public ParameterData(
             bool isNatural = false,
             string name = "Undefined",
-            ObservableCollection<double> parameterList = null)
+            List<double> parameterList = null,
+            double tolerance = 0.1)
         {
             IsNatural = isNatural;
             Name = name;
-            ParameterList = parameterList;
+            Total = parameterList.Count;
+            ObservableCollection<KeyValuePair<int, double>> collection = new ObservableCollection<KeyValuePair<int, double>>();
+            int index = 0;
+            double prev = 0;
+            foreach (double d in parameterList)
+            {
+                if (index == 0)
+                {
+                    prev = d;
+                    collection.Add(new KeyValuePair<int, double>(index, d));
+                    index++;
+                    continue;
+                }
+
+                if (Math.Abs(d - prev) < tolerance)
+                {
+                    index++;
+                    continue;
+                }
+
+                prev = d;
+                collection.Add(new KeyValuePair<int, double>(index, d));
+                index++;
+            }
+            ParameterList = collection;
         }
 
         public bool IsNatural { get; }
 
         public string Name { get; }
 
+        public int Total { get; }
+
         public bool Rendered { get; set; } = false;
 
-        private ObservableCollection<double> _parameterList = new ObservableCollection<double>();
+        private ObservableCollection<KeyValuePair<int, double>> _parameterList = new ObservableCollection<KeyValuePair<int, double>>();
 
-        public ObservableCollection<double> ParameterList
+        public ObservableCollection<KeyValuePair<int, double>> ParameterList
         {
             get => _parameterList;
             set
