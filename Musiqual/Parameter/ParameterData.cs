@@ -12,20 +12,36 @@ namespace Musiqual.Parameter
     /// </summary>
     public interface IParameterData
     {
+
+        bool IsNatural { get; }
+
     }
 
     /// <summary>
     /// The positive/negative parameter data.
     /// </summary>
-    public class NormalParameterData : IParameterData
+    public abstract class NormalParameterData : IParameterData
     {
+
+        public bool IsNatural => false;
 
     }
 
     /// <summary>
     /// The positive parameter data.
     /// </summary>
-    public class NaturalParameterData : IParameterData
+    public abstract class NaturalParameterData : IParameterData
+    {
+
+        public bool IsNatural => true;
+
+    }
+
+    /// <summary>
+    /// The placeholder parameter data.
+    /// NO NOT USE THIS CLASS AS PARAMETER UNLESS YOU KNOW WHAT YOU ARE DOING.
+    /// </summary>
+    public sealed class PlaceHolderParameterData : NormalParameterData
     {
 
     }

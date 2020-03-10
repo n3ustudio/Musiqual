@@ -30,7 +30,7 @@ namespace Musiqual.Parameter.Views
 
             InitializeComponent();
 
-            if (data is null) data = new NormalParameterData();
+            if (data is null) data = new PlaceHolderParameterData();
             ParameterData = data;
             if (scross is null) scross = new Scross();
             HorizontalScross = scross;

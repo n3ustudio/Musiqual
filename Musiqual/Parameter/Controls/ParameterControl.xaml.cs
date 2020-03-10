@@ -32,7 +32,7 @@ namespace Musiqual.Parameter.Controls
         #region DependencyProperty
 
         public static readonly DependencyProperty ParameterDataProperty = DependencyProperty.Register(
-            "ParameterData", typeof(IParameterData), typeof(ParameterControl), new PropertyMetadata(new NormalParameterData()));
+            "ParameterData", typeof(IParameterData), typeof(ParameterControl), new PropertyMetadata(new PlaceHolderParameterData()));
 
         public IParameterData ParameterData
         {
