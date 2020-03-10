@@ -22,8 +22,8 @@ namespace Musiqual.Parameter
             List<double> parameterList = null,
             double tolerance = 0.1,
             double viewTotal = 500,
-            double viewMin = 0,
-            double viewMax = 500)
+            double viewMin = -250,
+            double viewMax = 250)
         {
             IsNatural = isNatural;
             Name = name;
