@@ -9,7 +9,8 @@
              MouseWheel="ParameterControl_OnMouseWheel"
              KeyDown="ParameterControl_OnKeyDown"
              MouseLeftButtonDown="ParameterControl_OnMouseLeftButtonDown"
-             MouseRightButtonDown="ParameterControl_OnMouseRightButtonDown">
+             MouseRightButtonDown="ParameterControl_OnMouseRightButtonDown"
+             MouseMove="ParameterControl_OnMouseMove">
     <Grid>
             
     </Grid>

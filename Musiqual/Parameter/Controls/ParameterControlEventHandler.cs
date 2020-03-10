@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Musiqual.Editor.Models;
 using Scrosser.Models;
 
 namespace Musiqual.Parameter.Controls
@@ -74,6 +75,24 @@ namespace Musiqual.Parameter.Controls
         private void ParameterControl_OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void ParameterControl_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            Point position = e.GetPosition(this);
+            if (!IsMouseDown)
+            {
+                // Idle
+            }
+            switch (EditMode.Mode)
+            {
+                case EditModeEnum.Pencil:
+                    break;
+                case EditModeEnum.Eraser:
+                    break;
+                default: // Arrow
+                    break;
+            }
         }
 
     }
