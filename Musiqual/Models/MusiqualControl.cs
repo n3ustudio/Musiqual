@@ -13,16 +13,16 @@ namespace Musiqual.Models
     public abstract class MusiqualControl : Control, INotifyPropertyChanged
     {
 
-        public MusiqualControl(double position)
+        public MusiqualControl(long position)
         {
             _position = position;
         }
 
         #region DataContext
 
-        private double _position;
+        private long _position;
 
-        public double Position
+        public long Position
         {
             get => _position;
             set

@@ -26,7 +26,7 @@ namespace Musiqual.Parameter
             Name = name;
             Total = parameterList.Count;
             ObservableCollection<Models.Parameter> collection = new ObservableCollection<Models.Parameter>();
-            int index = 0;
+            long index = 0;
             double prev = 0;
             foreach (double d in parameterList)
             {

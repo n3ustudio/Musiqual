@@ -12,7 +12,7 @@ namespace Musiqual.Models
     public sealed class Parameter : MusiqualControl
     {
 
-        public Parameter(int position, double value)
+        public Parameter(long position, double value)
             : base(position)
         {
             _value = value;
