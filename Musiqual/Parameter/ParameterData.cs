@@ -11,27 +11,26 @@ namespace Musiqual.Parameter
 {
 
     /// <summary>
-    /// The ParameterData interface.
-    /// </summary>
-    public interface IParameterData : INotifyPropertyChanged
-    {
-
-        bool IsNatural { get; }
-
-    }
-
-    /// <summary>
     /// The ParameterData base class.
     /// </summary>
-    /// <typeparam name="T">The parameter type.</typeparam>
-    public abstract class ParameterData<T> : IParameterData
+    public class ParameterData : INotifyPropertyChanged
     {
+
+        public ParameterData(bool isNatural = false, string name = "Undefined")
+        {
+            IsNatural = isNatural;
+            Name = name;
+        }
 
         public bool IsNatural { get; }
 
-        private ObservableCollection<T> _parameterList = new ObservableCollection<T>();
+        public string Name { get; }
 
-        public ObservableCollection<T> ParameterList
+        public bool Rendered { get; set; } = false;
+
+        private ObservableCollection<double> _parameterList = new ObservableCollection<double>();
+
+        public ObservableCollection<double> ParameterList
         {
             get => _parameterList;
             set
@@ -47,35 +46,6 @@ namespace Musiqual.Parameter
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
-
-    /// <summary>
-    /// The positive/negative parameter data.
-    /// </summary>
-    public abstract class NormalParameterData<T> : ParameterData<T>
-    {
-
-        public new bool IsNatural => false;
-
-    }
-
-    /// <summary>
-    /// The positive parameter data.
-    /// </summary>
-    public abstract class NaturalParameterData<T> : ParameterData<T>
-    {
-
-        public new bool IsNatural => true;
-
-    }
-
-    /// <summary>
-    /// The placeholder parameter data.
-    /// NO NOT USE THIS CLASS AS PARAMETER UNLESS YOU KNOW WHAT YOU ARE DOING.
-    /// </summary>
-    public sealed class PlaceHolderParameterData : NormalParameterData<double>
-    {
-
     }
 
 }
