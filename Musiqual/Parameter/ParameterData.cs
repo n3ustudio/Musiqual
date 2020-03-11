@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Scrosser.Models;
 
 namespace Musiqual.Parameter
 {
@@ -17,6 +18,7 @@ namespace Musiqual.Parameter
     {
 
         public ParameterData(
+            long total = 0,
             bool isNatural = false,
             string name = "Undefined",
             List<double> parameterList = null,
@@ -36,7 +38,7 @@ namespace Musiqual.Parameter
                 if (index == 0)
                 {
                     prev = d;
-                    collection.Add(new Models.Parameter(index, d, viewTotal, viewMin, viewMax));
+                    collection.Add(new Models.Parameter(new Posit(total, index), d, viewTotal, viewMin, viewMax));
                     index++;
                     continue;
                 }
@@ -48,7 +50,7 @@ namespace Musiqual.Parameter
                 }
 
                 prev = d;
-                collection.Add(new Models.Parameter(index, d, viewTotal, viewMin, viewMax));
+                collection.Add(new Models.Parameter(new Posit(total, index), d, viewTotal, viewMin, viewMax));
                 index++;
             }
             ParameterList = collection;

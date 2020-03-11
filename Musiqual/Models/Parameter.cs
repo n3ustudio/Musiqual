@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
+using Scrosser.Models;
 
 namespace Musiqual.Models
 {
@@ -10,7 +11,7 @@ namespace Musiqual.Models
     {
 
         public Parameter(
-            long position,
+            Posit position,
             double value,
             double viewTotal,
             double viewMin,

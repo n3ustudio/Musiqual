@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Scrosser.Models;
 
 namespace Musiqual.Models
 {
@@ -14,7 +15,7 @@ namespace Musiqual.Models
     {
 
         public MusiqualControl(
-            long position,
+            Posit position,
             double viewTotal,
             double viewMin,
             double viewMax)
@@ -27,9 +28,9 @@ namespace Musiqual.Models
 
         #region DataContext
 
-        private long _position;
+        private Posit _position;
 
-        public long Position
+        public Posit Position
         {
             get => _position;
             set
