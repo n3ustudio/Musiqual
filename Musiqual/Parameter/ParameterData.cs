@@ -29,7 +29,7 @@ namespace Musiqual.Parameter
         {
             IsNatural = isNatural;
             Name = name;
-            Total = parameterList.Count;
+            Total = total;
             ObservableCollection<Models.Parameter> collection = new ObservableCollection<Models.Parameter>();
             long index = 0;
             double prev = 0;
@@ -60,7 +60,7 @@ namespace Musiqual.Parameter
 
         public string Name { get; }
 
-        public int Total { get; }
+        public long Total { get; }
 
         private ObservableCollection<Models.Parameter> _parameterList = new ObservableCollection<Models.Parameter>();
 
