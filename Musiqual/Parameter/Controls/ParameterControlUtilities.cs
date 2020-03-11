@@ -48,7 +48,7 @@ namespace Musiqual.Parameter.Controls
                 return;
             }
 
-            FrameDragMargin.Left = Math.Min(x, (double)_rectStartState);
+            FrameDrag.Margin = new Thickness(Math.Min(x, (double)_rectStartState), 0, 0, 0);
             FrameDrag.Width = Math.Abs(x - (double)_rectStartState);
 
         }
