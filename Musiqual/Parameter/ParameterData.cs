@@ -33,6 +33,7 @@ namespace Musiqual.Parameter
             _viewTotal = viewTotal;
             _viewMin = viewMin;
             _viewMax = viewMax;
+            if (parameterList is null) parameterList = new List<double>();
             ObservableCollection<Models.Parameter> collection = new ObservableCollection<Models.Parameter>();
             long index = 0;
             double prev = 0;

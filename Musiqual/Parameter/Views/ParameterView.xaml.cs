@@ -75,7 +75,7 @@ namespace Musiqual.Parameter.Views
             }
         }
 
-        private ParameterData _parameterData;
+        private ParameterData _parameterData = new ParameterData();
 
         public ParameterData ParameterData
         {
