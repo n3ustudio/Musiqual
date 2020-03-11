@@ -28,7 +28,7 @@ namespace Musiqual.Parameter.Controls
             FrameDrag.Visibility = Visibility.Collapsed;
             _rectStartState = null;
             FrameDrag.Width = 0;
-            IsMouseDown = false;
+            _isMouseDown = false;
             if (IsMouseCaptured) ReleaseMouseCapture();
         }
 
@@ -57,11 +57,13 @@ namespace Musiqual.Parameter.Controls
 
         #region DataContext
 
-        private bool IsMouseDown { get; set; }
+        private bool _isMouseDown;
 
         private double? _rectStartState;
 
-        private Models.Parameter _target { get; set; }
+        private Models.Parameter _target;
+
+        private long _mousePosition;
 
         private bool _hitTarget;
 

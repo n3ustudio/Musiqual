@@ -81,8 +81,9 @@ namespace Musiqual.Parameter.Controls
             }
 
             _target = p;
+            _mousePosition = Posit.GetPositFromViewer(position.X, HorizontalScross, ActualWidth, ParameterData.Total).Position;
             if (_target is null) _hitTarget = false;
-            else _hitTarget = (_target.Position.GetPositFromViewer(position.X, HorizontalScross, ActualWidth).Position) == _target.Position.Position;
+            else  _hitTarget = _mousePosition == _target.Position.Position;
         }
 
         #endregion

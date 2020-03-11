@@ -68,8 +68,8 @@ namespace Musiqual.Parameter.Controls
 
         private void ParameterControl_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (IsMouseDown) return;
-            IsMouseDown = true;
+            if (_isMouseDown) return;
+            _isMouseDown = true;
         }
 
         private void ParameterControl_OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
@@ -80,27 +80,47 @@ namespace Musiqual.Parameter.Controls
         private void ParameterControl_OnMouseMove(object sender, MouseEventArgs e)
         {
             Point position = e.GetPosition(this);
-
-            #region Target Update
-
             UpdateTarget(position);
+            if (_target is null) return;
+            double value = _target.ViewTotal = position.Y;
 
-            #endregion
-
-            if (!IsMouseDown)
+            if (!_isMouseDown)
             {
                 // Idle
+                // TODO
+                return;
             }
             switch (EditMode.Mode)
             {
                 case EditModeEnum.Pencil:
                 {
-                    // TODO
+                    if (_hitTarget)
+                    {
+                        _target.Value = value;
+                        //UpdateView();
+                    }
+                    else
+                    {
+                        Models.Parameter parameter = new Models.Parameter(
+                            new Posit(ParameterData.Total, _mousePosition),
+                            value,
+                            ParameterData.ViewTotal,
+                            ParameterData.ViewMin,
+                            ParameterData.ViewMax);
+                        ParameterData.ParameterList.Add(parameter);
+                        FrameParameterContainer.Children.Add(parameter);
+                        UpdateView();
+                    }
                     break;
                 }
                 case EditModeEnum.Eraser:
                 {
-                    // TODO
+                    if (_hitTarget)
+                    {
+                        FrameParameterContainer.Children.Remove(_target);
+                        ParameterData.ParameterList.Remove(_target);
+                        //UpdateView();
+                    }
                     break;
                 }
                 default: // Arrow
@@ -113,7 +133,7 @@ namespace Musiqual.Parameter.Controls
         
         private void ParameterControl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (!IsMouseDown) return;
+            if (!_isMouseDown) return;
             switch (EditMode.Mode)
             {
                 case EditModeEnum.Pencil: // Break

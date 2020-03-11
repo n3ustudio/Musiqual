@@ -30,6 +30,9 @@ namespace Musiqual.Parameter
             IsNatural = isNatural;
             Name = name;
             Total = total;
+            _viewTotal = viewTotal;
+            _viewMin = viewMin;
+            _viewMax = viewMax;
             ObservableCollection<Models.Parameter> collection = new ObservableCollection<Models.Parameter>();
             long index = 0;
             double prev = 0;
@@ -70,6 +73,42 @@ namespace Musiqual.Parameter
             set
             {
                 _parameterList = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private double _viewTotal;
+
+        public double ViewTotal
+        {
+            get => _viewTotal;
+            set
+            {
+                _viewTotal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _viewMin;
+
+        public double ViewMin
+        {
+            get => _viewMin;
+            set
+            {
+                _viewMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _viewMax;
+
+        public double ViewMax
+        {
+            get => _viewMax;
+            set
+            {
+                _viewMax = value;
                 OnPropertyChanged();
             }
         }
