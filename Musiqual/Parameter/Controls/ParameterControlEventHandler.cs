@@ -53,7 +53,6 @@ namespace Musiqual.Parameter.Controls
                         VerticalScross.ScrollDelta(false);
                 }
             }
-            UpdateView();
             e.Handled = true;
         }
 
