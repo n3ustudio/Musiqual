@@ -14,7 +14,7 @@ namespace Musiqual.Models
     public abstract class MusiqualControl : Control, INotifyPropertyChanged
     {
 
-        public MusiqualControl(
+        protected MusiqualControl(
             Posit position,
             double viewTotal,
             double viewMin,
