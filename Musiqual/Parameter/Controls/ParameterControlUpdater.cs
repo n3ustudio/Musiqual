@@ -24,6 +24,48 @@ namespace Musiqual.Parameter.Controls
     public partial class ParameterControl : UserControl
     {
 
+        #region UpdateView
+
+        /// <summary>
+        /// Load control view.
+        /// </summary>
+        /// <param name="sender">The control.</param>
+        /// <param name="e">Null.</param>
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            foreach (Models.Parameter parameter in ParameterData.ParameterList)
+            {
+                parameter.HorizontalAlignment = HorizontalAlignment.Left;
+                parameter.VerticalAlignment = VerticalAlignment.Top;
+                parameter.Visibility = Visibility.Collapsed;
+                FrameParameterContainer.Children.Add(parameter);
+            }
+
+            HorizontalScross.PropertyChanged += (o, args) => UpdateView();
+            VerticalScross.PropertyChanged += (o, args) => UpdateView();
+            UpdateView();
+        }
+
+        /// <summary>
+        /// Update control view.
+        /// </summary>
+        private void UpdateView()
+        {
+            foreach (Models.Parameter parameter in ParameterData.ParameterList)
+            {
+                var (visibility, left) = parameter.Position.GetPosition(HorizontalScross, ActualWidth);
+                if (visibility == Visibility.Collapsed)
+                {
+                    parameter.Visibility = Visibility.Collapsed;
+                    continue;
+                }
+                parameter.Margin = new Thickness(
+                    left, parameter.ViewTotal - parameter.Value, 0, 0);
+            }
+        }
+
+        #endregion
+
     }
 
 }

@@ -18,6 +18,7 @@
              MouseMove="ParameterControl_OnMouseMove"
              LostMouseCapture="ParameterControl_OnLostMouseCapture">
     <Grid>
+        <Canvas x:Name="FrameParameterContainer" IsHitTestVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Canvas x:Name="FrameDrag" IsHitTestVisible="False" Visibility="Collapsed"
                 Width="0" Background="Red" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
     </Grid>
