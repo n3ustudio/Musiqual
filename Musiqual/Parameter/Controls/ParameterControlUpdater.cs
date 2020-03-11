@@ -35,6 +35,7 @@ namespace Musiqual.Parameter.Controls
         {
             foreach (Models.Parameter parameter in ParameterData.ParameterList)
             {
+                parameter.Margin = new Thickness(0);
                 parameter.HorizontalAlignment = HorizontalAlignment.Left;
                 parameter.VerticalAlignment = VerticalAlignment.Top;
                 parameter.Visibility = Visibility.Collapsed;
@@ -62,6 +63,26 @@ namespace Musiqual.Parameter.Controls
                 parameter.Margin = new Thickness(
                     left, parameter.ViewTotal - parameter.Value, 0, 0);
             }
+        }
+
+        #endregion
+
+        #region UpdateTarget
+
+        private void UpdateTarget(Point position)
+        {
+            Models.Parameter p = null;
+            foreach (Models.Parameter parameter in ParameterData.ParameterList)
+            {
+                double left = parameter.Margin.Left;
+                if (left > position.X) continue;
+                if (p is null) p = parameter;
+                else if (left < p.Margin.Left) p = parameter;
+            }
+
+            _target = p;
+            if (_target is null) _hitTarget = false;
+            else _hitTarget = (_target.Position.GetPositFromViewer(position.X, HorizontalScross, ActualWidth).Position) == _target.Position.Position;
         }
 
         #endregion

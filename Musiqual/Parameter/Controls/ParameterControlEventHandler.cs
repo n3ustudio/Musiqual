@@ -83,7 +83,7 @@ namespace Musiqual.Parameter.Controls
 
             #region Target Update
 
-            // TODO
+            UpdateTarget(position);
 
             #endregion
 
@@ -94,9 +94,15 @@ namespace Musiqual.Parameter.Controls
             switch (EditMode.Mode)
             {
                 case EditModeEnum.Pencil:
+                {
+                    // TODO
                     break;
+                }
                 case EditModeEnum.Eraser:
+                {
+                    // TODO
                     break;
+                }
                 default: // Arrow
                 {
                     DragRect(position.X);
@@ -116,7 +122,7 @@ namespace Musiqual.Parameter.Controls
                     break;
                 default: // Select
                 {
-                    
+                    // TODO
                     break;
                 }
             }

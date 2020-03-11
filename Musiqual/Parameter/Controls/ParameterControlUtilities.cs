@@ -63,6 +63,8 @@ namespace Musiqual.Parameter.Controls
 
         private Models.Parameter _target { get; set; }
 
+        private bool _hitTarget;
+
         #endregion
 
     }
