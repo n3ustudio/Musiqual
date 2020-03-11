@@ -154,5 +154,9 @@ namespace Musiqual.Parameter.Controls
             ResetControlState();
         }
 
+        private void ParameterControl_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdateView();
+        }
     }
 }
