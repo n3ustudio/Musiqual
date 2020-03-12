@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -22,7 +22,7 @@ namespace Musiqual.Parameter
             bool isNatural = false,
             string name = "Undefined",
             List<double> parameterList = null,
-            double tolerance = 0.1,
+            double tolerance = 0.0001,
             double viewTotal = 500,
             double viewMin = -250,
             double viewMax = 250)
@@ -34,6 +34,9 @@ namespace Musiqual.Parameter
             _viewMin = viewMin;
             _viewMax = viewMax;
             if (parameterList is null) parameterList = new List<double>();
+
+            #region Tolerance Combine
+
             ObservableCollection<Models.Parameter> collection = new ObservableCollection<Models.Parameter>();
             long index = 0;
             double prev = 0;
@@ -58,7 +61,14 @@ namespace Musiqual.Parameter
                 index++;
             }
             ParameterList = collection;
+
+            #endregion
+
+            CalcNextPosition();
+
         }
+
+        #region DataContext
 
         public bool IsNatural { get; }
 
@@ -114,12 +124,28 @@ namespace Musiqual.Parameter
             }
         }
 
+        #endregion
+
+        #region PropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+
+        #region Utilities
+
+        public void CalcNextPosition()
+        {
+
+        }
+
+        #endregion
+
     }
 
 }
