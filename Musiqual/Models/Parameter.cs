@@ -35,6 +35,18 @@ namespace Musiqual.Models
             }
         }
 
+        private double _nextPosition;
+
+        public double NextPosition
+        {
+            get => _nextPosition;
+            set
+            {
+                _nextPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region PropertyChanged
