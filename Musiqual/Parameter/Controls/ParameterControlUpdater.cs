@@ -83,6 +83,8 @@ namespace Musiqual.Parameter.Controls
                     parameter.Visibility = Visibility.Collapsed;
                     continue;
                 }
+
+                parameter.Visibility = Visibility.Visible;
                 parameter.Margin = new Thickness(
                     left, parameter.ViewTotal - parameter.Value, 0, 0);
             }

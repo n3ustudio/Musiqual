@@ -19,8 +19,6 @@ namespace Musiqual.Models
             : base(position, viewTotal, viewMin, viewMax)
         {
             _value = value;
-            Width = 5.0;
-            Height = 5.0;
         }
 
         #region DataContext
@@ -69,7 +67,9 @@ namespace Musiqual.Models
                 RadiusX = _rect.Width / 2.0,
                 RadiusY = _rect.Height / 2.0
             };
-            drawingContext.DrawGeometry(Background, null, ellipseGeometry);
+            drawingContext.DrawGeometry(new SolidColorBrush(Colors.White), null, ellipseGeometry);
+            //drawingContext.DrawRectangle(new SolidColorBrush(Colors.Blue), null,
+            //    new Rect(new Point(Position.Position, Value), new Point(Position.Position + 10, Value + 10)));
         }
 
         private Rect _rect;
