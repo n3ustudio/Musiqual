@@ -43,6 +43,11 @@ namespace Musiqual.Parameter.Controls
             }
 
             HorizontalScross.PropertyChanged += (o, args) => UpdateView();
+            HorizontalScross.PropertyChanged += (o, args) =>
+            {
+                if (args.PropertyName == nameof(Scross.Zoom))
+                    HorizontalScross.ViewportSize = ActualWidth / HorizontalScross.Zoom;
+            };
             VerticalScross.PropertyChanged += (o, args) => UpdateView();
             UpdateView();
         }
@@ -62,6 +67,7 @@ namespace Musiqual.Parameter.Controls
                 parameter.Visibility = Visibility.Collapsed;
                 FrameParameterContainer.Children.Remove(parameter);
             }
+
         }
 
         /// <summary>
