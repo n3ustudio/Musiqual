@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Scrosser.Models;
 
 namespace Musiqual.Parameter
@@ -64,7 +65,7 @@ namespace Musiqual.Parameter
 
             #endregion
 
-            CalcNextPosition();
+            //CalcNextPosition();
 
         }
 
@@ -139,8 +140,35 @@ namespace Musiqual.Parameter
 
         #region Utilities
 
-        public void CalcNextPosition()
+        public void CalcNextPosition(Scross scross, double actualWidth)
         {
+
+            // TODO: Remove the next line and check what's wrong when UpdateView() called.
+            return;
+            double value = actualWidth;
+            bool visible = false;
+            bool last = false;
+            for (int i = ParameterList.Count - 1; i >= 0; i--)
+            {
+                Models.Parameter parameter = ParameterList[i];
+                if (parameter is null) continue;
+                var (v, x) = parameter.Position.GetPosition(scross, actualWidth);
+                if (last)
+                {
+                    parameter.NextPosition = value;
+                    break;
+                }
+                if (v == Visibility.Visible)
+                {
+                    visible = true;
+                    parameter.NextPosition = value;
+                }
+                else
+                {
+                    if (visible) last = true;
+                }
+                value = x;
+            }
 
         }
 

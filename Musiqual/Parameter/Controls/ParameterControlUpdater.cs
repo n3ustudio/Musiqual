@@ -75,7 +75,7 @@ namespace Musiqual.Parameter.Controls
         /// </summary>
         private void UpdateView()
         {
-            ParameterData.CalcNextPosition();
+            ParameterData.CalcNextPosition(HorizontalScross, ActualWidth);
             foreach (Models.Parameter parameter in ParameterData.ParameterList)
             {
                 var (visibility, left) = parameter.Position.GetPosition(HorizontalScross, ActualWidth);
