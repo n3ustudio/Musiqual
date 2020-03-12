@@ -27,8 +27,6 @@ namespace Musiqual.Parameter.Controls
         public ParameterControl()
         {
             InitializeComponent();
-
-            Loaded += OnLoaded;
         }
 
         #region DependencyProperty

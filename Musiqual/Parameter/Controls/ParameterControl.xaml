@@ -17,7 +17,9 @@
              MouseRightButtonDown="ParameterControl_OnMouseRightButtonDown"
              MouseMove="ParameterControl_OnMouseMove"
              LostMouseCapture="ParameterControl_OnLostMouseCapture"
-             SizeChanged="ParameterControl_OnSizeChanged">
+             SizeChanged="ParameterControl_OnSizeChanged"
+             Loaded="OnLoaded"
+             Unloaded="ParameterControl_OnUnloaded">
     <Grid>
         <Canvas x:Name="FrameParameterContainer" IsHitTestVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Canvas x:Name="FrameDrag" IsHitTestVisible="False" Visibility="Collapsed"

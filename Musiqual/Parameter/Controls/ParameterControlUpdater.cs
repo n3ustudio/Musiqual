@@ -48,6 +48,23 @@ namespace Musiqual.Parameter.Controls
         }
 
         /// <summary>
+        /// Unload control view.
+        /// </summary>
+        /// <param name="sender">The control.</param>
+        /// <param name="e">Null.</param>
+        private void ParameterControl_OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            foreach (Models.Parameter parameter in ParameterData.ParameterList)
+            {
+                parameter.Margin = new Thickness(0);
+                parameter.HorizontalAlignment = HorizontalAlignment.Left;
+                parameter.VerticalAlignment = VerticalAlignment.Top;
+                parameter.Visibility = Visibility.Collapsed;
+                FrameParameterContainer.Children.Remove(parameter);
+            }
+        }
+
+        /// <summary>
         /// Update control view.
         /// </summary>
         private void UpdateView()
