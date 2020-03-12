@@ -27,6 +27,7 @@ namespace Musiqual.Parameter.Views
     {
         public ParameterView(ParameterData data, Scross scross, EditMode editMode)
         {
+
             if (data is null) data = new ParameterData();
             Header = data.Name + " - Parameter";
             ParameterData = data;
@@ -36,8 +37,6 @@ namespace Musiqual.Parameter.Views
             EditMode = editMode;
 
             InitializeComponent();
-
-            DataContext = this;
 
         }
 
