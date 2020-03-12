@@ -63,7 +63,7 @@ namespace Musiqual.Parameter.Controls
 
         private Models.Parameter _target;
 
-        private long _mousePosition;
+        private int _mousePosition;
 
         private bool _hitTarget;
 

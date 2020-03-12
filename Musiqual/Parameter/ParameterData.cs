@@ -18,7 +18,7 @@ namespace Musiqual.Parameter
     {
 
         public ParameterData(
-            long total = 0,
+            int total = 0,
             bool isNatural = false,
             string name = "Undefined",
             List<double> parameterList = null,
@@ -38,7 +38,7 @@ namespace Musiqual.Parameter
             #region Tolerance Combine
 
             ObservableCollection<Models.Parameter> collection = new ObservableCollection<Models.Parameter>();
-            long index = 0;
+            int index = 0;
             double prev = 0;
             foreach (double d in parameterList)
             {
@@ -74,7 +74,7 @@ namespace Musiqual.Parameter
 
         public string Name { get; }
 
-        public long Total { get; }
+        public int Total { get; }
 
         private ObservableCollection<Models.Parameter> _parameterList = new ObservableCollection<Models.Parameter>();
 
