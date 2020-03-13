@@ -48,9 +48,9 @@ namespace Musiqual.Parameter.Controls
                 else
                 {
                     if (e.Delta > 0)
-                        VerticalScross.ScrollDelta();
-                    else
                         VerticalScross.ScrollDelta(false);
+                    else
+                        VerticalScross.ScrollDelta();
                 }
             }
             e.Handled = true;
