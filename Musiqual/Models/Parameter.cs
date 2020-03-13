@@ -55,7 +55,7 @@ namespace Musiqual.Models
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (!(_dc is null)) OnRender(_dc);
+            //if (!(_dc is null)) OnRender(_dc);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
@@ -65,7 +65,7 @@ namespace Musiqual.Models
         
         protected override void OnRender(DrawingContext drawingContext)
         {
-            if (_dc is null) _dc = drawingContext;
+            //if (_dc is null) _dc = drawingContext;
             base.OnRender(drawingContext);
             double num = ViewTotal - 5.0;
             _rect.X = 0.0;
@@ -86,7 +86,7 @@ namespace Musiqual.Models
 
         private Rect _rect;
 
-        private DrawingContext _dc;
+        //private DrawingContext _dc;
 
         #endregion
 

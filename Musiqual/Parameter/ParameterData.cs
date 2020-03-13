@@ -144,7 +144,7 @@ namespace Musiqual.Parameter
         {
 
             // TODO: Remove the next line and check what's wrong when UpdateView() called.
-            return;
+            //return;
             double value = actualWidth;
             bool visible = false;
             bool last = false;
