@@ -78,8 +78,9 @@ namespace Musiqual.Parameter.Controls
             ParameterData.CalcNextPosition(HorizontalScross, ActualWidth);
             foreach (Models.Parameter parameter in ParameterData.ParameterList)
             {
-                var (visibility, left) = parameter.Position.GetPosition(HorizontalScross, ActualWidth);
-                if (visibility == Visibility.Collapsed)
+                var (vL, left) = parameter.Position.GetPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
+                var (vT, top) = parameter.Value.GetPosition(VerticalScross, ActualHeight, (d, d1) => d - d1);
+                if (vL == Visibility.Collapsed || vT == Visibility.Collapsed)
                 {
                     parameter.Visibility = Visibility.Collapsed;
                     continue;
@@ -87,7 +88,7 @@ namespace Musiqual.Parameter.Controls
 
                 parameter.Visibility = Visibility.Visible;
                 parameter.Margin = new Thickness(
-                    left, parameter.ViewTotal - parameter.Value, 0, 0);
+                    left, top, 0, 0);
             }
         }
 
@@ -107,7 +108,7 @@ namespace Musiqual.Parameter.Controls
             }
 
             _target = p;
-            _mousePosition = Posit.GetPositFromViewer(position.X, HorizontalScross, ActualWidth, ParameterData.Total).Position;
+            _mousePosition = Posit<int>.GetPositFromViewer(position.X, HorizontalScross, ActualWidth, ParameterData.HorizontalTotal).Position;
             if (_target is null) _hitTarget = false;
             else  _hitTarget = _mousePosition == _target.Position.Position;
         }

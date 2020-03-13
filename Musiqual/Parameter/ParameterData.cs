@@ -19,21 +19,17 @@ namespace Musiqual.Parameter
     {
 
         public ParameterData(
-            int total = 0,
+            int horizontalTotal = 0,
+            double verticalTotal = 0,
             bool isNatural = false,
             string name = "Undefined",
             List<double> parameterList = null,
-            double tolerance = 0.0001,
-            double viewTotal = 500,
-            double viewMin = -250,
-            double viewMax = 250)
+            double tolerance = 0.0001)
         {
             IsNatural = isNatural;
             Name = name;
-            Total = total;
-            _viewTotal = viewTotal;
-            _viewMin = viewMin;
-            _viewMax = viewMax;
+            HorizontalTotal = horizontalTotal;
+            VerticalTotal = verticalTotal;
             if (parameterList is null) parameterList = new List<double>();
 
             #region Tolerance Combine
@@ -46,7 +42,8 @@ namespace Musiqual.Parameter
                 if (index == 0)
                 {
                     prev = d;
-                    collection.Add(new Models.Parameter(new Posit(total, index), d, viewTotal, viewMin, viewMax));
+                    collection.Add(new Models.Parameter(new Posit<int>(HorizontalTotal, index, 0),
+                        new Posit<double>(VerticalTotal, d, 0)));
                     index++;
                     continue;
                 }
@@ -58,7 +55,8 @@ namespace Musiqual.Parameter
                 }
 
                 prev = d;
-                collection.Add(new Models.Parameter(new Posit(total, index), d, viewTotal, viewMin, viewMax));
+                collection.Add(new Models.Parameter(new Posit<int>(HorizontalTotal, index, 0),
+                    new Posit<double>(VerticalTotal, d, 0)));
                 index++;
             }
             ParameterList = collection;
@@ -75,7 +73,9 @@ namespace Musiqual.Parameter
 
         public string Name { get; }
 
-        public int Total { get; }
+        public int HorizontalTotal { get; }
+
+        public double VerticalTotal { get; }
 
         private ObservableCollection<Models.Parameter> _parameterList = new ObservableCollection<Models.Parameter>();
 
@@ -89,42 +89,6 @@ namespace Musiqual.Parameter
             }
         }
         
-        private double _viewTotal;
-
-        public double ViewTotal
-        {
-            get => _viewTotal;
-            set
-            {
-                _viewTotal = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _viewMin;
-
-        public double ViewMin
-        {
-            get => _viewMin;
-            set
-            {
-                _viewMin = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _viewMax;
-
-        public double ViewMax
-        {
-            get => _viewMax;
-            set
-            {
-                _viewMax = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #region PropertyChanged
@@ -143,8 +107,6 @@ namespace Musiqual.Parameter
         public void CalcNextPosition(Scross scross, double actualWidth)
         {
 
-            // TODO: Remove the next line and check what's wrong when UpdateView() called.
-            //return;
             double value = actualWidth;
             bool visible = false;
             bool last = false;
@@ -152,7 +114,7 @@ namespace Musiqual.Parameter
             {
                 Models.Parameter parameter = ParameterList[i];
                 if (parameter is null) continue;
-                var (v, x) = parameter.Position.GetPosition(scross, actualWidth);
+                var (v, x) = parameter.Position.GetPosition(scross, actualWidth, (d, i1) => d - i1);
                 if (last)
                 {
                     parameter.NextPosition = value;

@@ -10,22 +10,17 @@ namespace Musiqual.Models
     public sealed class Parameter : MusiqualControl
     {
 
-        public Parameter(
-            Posit position,
-            double value,
-            double viewTotal,
-            double viewMin,
-            double viewMax)
-            : base(position, viewTotal, viewMin, viewMax)
+        public Parameter(Posit<int> position, Posit<double> value)
+            : base(position)
         {
             _value = value;
         }
 
         #region DataContext
 
-        private double _value;
+        private Posit<double> _value;
 
-        public double Value
+        public Posit<double> Value
         {
             get => _value;
             set

@@ -82,7 +82,7 @@ namespace Musiqual.Parameter.Controls
             Point position = e.GetPosition(this);
             UpdateTarget(position);
             if (_target is null) return;
-            double value = _target.ViewTotal = position.Y;
+            double value = position.Y;
 
             if (!_isMouseDown)
             {
@@ -96,17 +96,14 @@ namespace Musiqual.Parameter.Controls
                 {
                     if (_hitTarget)
                     {
-                        _target.Value = value;
+                        _target.Value.Position = value;
                         //UpdateView();
                     }
                     else
                     {
                         Models.Parameter parameter = new Models.Parameter(
-                            new Posit(ParameterData.Total, _mousePosition),
-                            value,
-                            ParameterData.ViewTotal,
-                            ParameterData.ViewMin,
-                            ParameterData.ViewMax);
+                            new Posit<int>(ParameterData.HorizontalTotal, _mousePosition, 0),
+                            Posit<double>.GetValueFromViewer(value, VerticalScross, ActualHeight, VerticalScross.Total));
                         ParameterData.ParameterList.Add(parameter);
                         FrameParameterContainer.Children.Add(parameter);
                         UpdateView();
