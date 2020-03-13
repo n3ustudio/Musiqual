@@ -55,7 +55,6 @@ namespace Musiqual.Models
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            //if (!(_dc is null)) OnRender(_dc);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
@@ -65,13 +64,7 @@ namespace Musiqual.Models
         
         protected override void OnRender(DrawingContext drawingContext)
         {
-            //if (_dc is null) _dc = drawingContext;
             base.OnRender(drawingContext);
-            double num = ViewTotal - 5.0;
-            _rect.X = 0.0;
-            _rect.Y = num - (Value - ViewMin) * (num / (ViewMax - ViewMin)) + 2.5;
-            _rect.Width = 0.0;
-            _rect.Height = 0.0;
             _rect.Inflate(2.5, 2.5);
             EllipseGeometry ellipseGeometry = new EllipseGeometry
             {
@@ -80,13 +73,9 @@ namespace Musiqual.Models
                 RadiusY = _rect.Height / 2.0
             };
             drawingContext.DrawGeometry(new SolidColorBrush(Colors.White), null, ellipseGeometry);
-            //drawingContext.DrawRectangle(new SolidColorBrush(Colors.Blue), null,
-            //    new Rect(new Point(Position.Position, Value), new Point(Position.Position + 10, Value + 10)));
         }
 
         private Rect _rect;
-
-        //private DrawingContext _dc;
 
         #endregion
 
