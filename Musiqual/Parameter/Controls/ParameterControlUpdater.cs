@@ -49,6 +49,11 @@ namespace Musiqual.Parameter.Controls
                     HorizontalScross.ViewportSize = ActualWidth / HorizontalScross.Zoom;
             };
             VerticalScross.PropertyChanged += (o, args) => UpdateView();
+            VerticalScross.PropertyChanged += (o, args) =>
+            {
+                if (args.PropertyName == nameof(Scross.Zoom))
+                    VerticalScross.ViewportSize = ActualHeight / VerticalScross.Zoom;
+            };
             UpdateView();
         }
 

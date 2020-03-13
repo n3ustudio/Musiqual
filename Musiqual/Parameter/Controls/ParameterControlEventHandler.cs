@@ -154,6 +154,7 @@ namespace Musiqual.Parameter.Controls
         private void ParameterControl_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             HorizontalScross.ViewportSize = ActualWidth / HorizontalScross.Zoom;
+            VerticalScross.ViewportSize = ActualHeight / VerticalScross.Zoom;
             UpdateView();
         }
     }
