@@ -60,6 +60,7 @@ namespace Musiqual.Models
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+            _rect = new Rect();
             _rect.Inflate(2.5, 2.5);
             EllipseGeometry ellipseGeometry = new EllipseGeometry
             {
