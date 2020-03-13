@@ -83,8 +83,8 @@ namespace Musiqual.Parameter.Controls
             ParameterData.CalcNextPosition(HorizontalScross, ActualWidth);
             foreach (Models.Parameter parameter in ParameterData.ParameterList)
             {
-                var (vL, left) = parameter.Position.GetPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
-                var (vT, top) = parameter.Value.GetPosition(VerticalScross, ActualHeight, (d, d1) => d - d1);
+                var (vL, left) = parameter.Position.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
+                var (vT, top) = parameter.Value.GetVertitalPosition(VerticalScross, ActualHeight, (d, d1) => d - d1);
                 if (vL == Visibility.Collapsed || vT == Visibility.Collapsed)
                 {
                     parameter.Visibility = Visibility.Collapsed;

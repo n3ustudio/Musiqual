@@ -114,7 +114,7 @@ namespace Musiqual.Parameter
             {
                 Models.Parameter parameter = ParameterList[i];
                 if (parameter is null) continue;
-                var (v, x) = parameter.Position.GetPosition(scross, actualWidth, (d, i1) => d - i1);
+                var (v, x) = parameter.Position.GetHorizontalPosition(scross, actualWidth, (d, i1) => d - i1);
                 if (last)
                 {
                     parameter.NextPosition = value;
