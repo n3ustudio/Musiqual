@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Musiqual.Editor.Models;
+using Musiqual.Playback;
 using Scrosser.Models;
 
 namespace Musiqual.Parameter.Controls
@@ -68,7 +69,14 @@ namespace Musiqual.Parameter.Controls
 
         private void ParameterControl_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Point position = e.GetPosition(this);
             if (_isMouseDown) return;
+            if (EditMode.Mode == EditModeEnum.Playback)
+            {
+                PlaybackView.Current.SetPosition(Posit<int>.GetPositFromViewer(position.X, HorizontalScross,
+                    ActualWidth, ParameterData.HorizontalTotal));
+                return;
+            }
             _isMouseDown = true;
         }
 
