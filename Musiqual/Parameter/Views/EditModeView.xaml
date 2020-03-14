@@ -29,19 +29,19 @@
         </ToggleButton>
         <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=3}">
-            <u:Icon Type="Cut" Margin="3"/>
+            <u:Icon Type="Cut" Margin="3" IsEnabled="False"/>
         </ToggleButton>
         <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=4}">
-            <u:Icon Type="ScissorTest" Margin="3"/>
+            <u:Icon Type="ScissorTest" Margin="3" IsEnabled="False"/>
         </ToggleButton>
         <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=5}">
-            <u:Icon Type="Timeline" Margin="3"/>
+            <u:Icon Type="Timeline" Margin="3" IsEnabled="False"/>
         </ToggleButton>
         <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=6}">
-            <u:Icon Type="PlayStep" Margin="3"/>
+            <u:Icon Type="PlayStep" Margin="3" IsEnabled="False"/>
         </ToggleButton>
     </StackPanel>
 </UserControl>
