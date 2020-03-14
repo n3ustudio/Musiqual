@@ -130,5 +130,11 @@ namespace Musiqual.Parameter.Controls
             VerticalScross.ViewportSize = ActualHeight / VerticalScross.Zoom;
             UpdateView();
         }
+
+        private void ParameterControl_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            ResetControlState();
+        }
+
     }
 }

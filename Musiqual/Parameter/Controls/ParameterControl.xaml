@@ -19,7 +19,8 @@
              LostMouseCapture="ParameterControl_OnLostMouseCapture"
              SizeChanged="ParameterControl_OnSizeChanged"
              Loaded="OnLoaded"
-             Unloaded="ParameterControl_OnUnloaded">
+             Unloaded="ParameterControl_OnUnloaded"
+             MouseLeave="ParameterControl_OnMouseLeave">
     <Grid>
         <Canvas x:Name="FrameParameterContainer" IsHitTestVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Canvas x:Name="FrameDrag" IsHitTestVisible="False" Visibility="Collapsed"
