@@ -140,7 +140,8 @@ namespace Musiqual.Parameter.Controls
                 {
                     if (_hitTarget)
                     {
-                        _target.Value.Position = position.Value;
+                        _target.Value.Position = Posit<double>.GetValueFromViewer(position.Value, VerticalScross,
+                            ActualHeight, ParameterData.VerticalTotal).Position;
                         UpdateView();
                     }
                     else
