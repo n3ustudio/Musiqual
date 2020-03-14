@@ -180,6 +180,7 @@ namespace Musiqual.Playback
 
         public void SetPosition(Posit<int> posit)
         {
+            if (!IsSoundLoaded) return;
             Dispatcher.CurrentDispatcher.Invoke(() =>
             {
                 Player.Position = new TimeSpan(0, 0, 0, 0,
