@@ -28,8 +28,12 @@
                 <ToggleButton Margin="3" IsChecked="{Binding ElementName=RootElement, Path=IsSoundLoaded, Mode=TwoWay}" VerticalAlignment="Center">
                     <controls:Icon Type="FileDestination" Margin="3"/>
                 </ToggleButton>
+                <Button Margin="3" VerticalAlignment="Center" Click="ReloadButtonBase_OnClick"
+                        IsEnabled="{Binding ElementName=RootElement, Path=IsSoundLoaded, Mode=OneWay}">
+                    <controls:Icon Type="Refresh" Margin="3"/>
+                </Button>
                 <ToggleButton Margin="3" VerticalAlignment="Center" IsEnabled="{Binding ElementName=RootElement, Path=IsSoundLoaded, Mode=OneWay}"
-                        IsChecked="{Binding ElementName=RootElement, Path=IsSoundPlaying, Mode=TwoWay}">
+                              IsChecked="{Binding ElementName=RootElement, Path=IsSoundPlaying, Mode=TwoWay}">
                     <controls:Icon Type="Run" Margin="3"/>
                 </ToggleButton>
                 <TextBlock Margin="3" VerticalAlignment="Center" Text="{Binding ElementName=RootElement, Path=SoundPath, Mode=OneWay}"/>

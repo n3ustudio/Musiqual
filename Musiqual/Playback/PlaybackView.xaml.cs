@@ -174,6 +174,13 @@ namespace Musiqual.Playback
             Player.Pause();
         }
 
+        private void ReloadButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            string tmp = SoundPath;
+            Player.Close();
+            SoundPath = tmp;
+        }
+
         #endregion
 
         #region Interface
