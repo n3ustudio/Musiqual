@@ -27,21 +27,21 @@
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=2}">
             <u:Icon Type="Eraser" Margin="3"/>
         </ToggleButton>
-        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
+        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick" IsEnabled="False"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=3}">
-            <u:Icon Type="Cut" Margin="3" IsEnabled="False"/>
+            <u:Icon Type="Cut" Margin="3"/>
         </ToggleButton>
-        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
+        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick" IsEnabled="False"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=4}">
-            <u:Icon Type="ScissorTest" Margin="3" IsEnabled="False"/>
+            <u:Icon Type="ScissorTest" Margin="3"/>
         </ToggleButton>
-        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
+        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick" IsEnabled="False"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=5}">
-            <u:Icon Type="Timeline" Margin="3" IsEnabled="False"/>
+            <u:Icon Type="Timeline" Margin="3"/>
         </ToggleButton>
-        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
+        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick" IsEnabled="False"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=6}">
-            <u:Icon Type="PlayStep" Margin="3" IsEnabled="False"/>
+            <u:Icon Type="PlayStep" Margin="3"/>
         </ToggleButton>
     </StackPanel>
 </UserControl>
