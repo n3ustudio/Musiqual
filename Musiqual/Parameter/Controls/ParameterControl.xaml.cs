@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +22,7 @@ namespace Musiqual.Parameter.Controls
     /// <summary>
     /// ParameterControl.xaml 的交互逻辑
     /// </summary>
-    public partial class ParameterControl : UserControl
+    public partial class ParameterControl : UserControl, INotifyPropertyChanged
     {
 
         public ParameterControl()

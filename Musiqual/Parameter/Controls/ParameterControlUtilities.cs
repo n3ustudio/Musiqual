@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -55,7 +56,7 @@ namespace Musiqual.Parameter.Controls
 
         #endregion
 
-        #region DataContext
+        #region Variables
 
         private bool _isMouseDown;
 
@@ -66,6 +67,67 @@ namespace Musiqual.Parameter.Controls
         private KeyValuePair<int, double> _mousePosition;
 
         private bool _hitTarget;
+
+        #endregion
+
+        #region DataContext
+
+        private string _topPos = "";
+
+        public string TopPos
+        {
+            get => _topPos;
+            set
+            {
+                _topPos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _centerPos = "";
+
+        public string CenterPos
+        {
+            get => _centerPos;
+            set
+            {
+                _centerPos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _bottomPos = "";
+
+        public string BottomPos
+        {
+            get => _bottomPos;
+            set
+            {
+                _bottomPos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        private void UpdatePos()
+        {
+            TopPos = Posit<double>.GetValueFromViewer(ActualHeight, VerticalScross,
+                ActualHeight, ParameterData.VerticalTotal).Position.ToString("####");
+            CenterPos = Posit<double>.GetValueFromViewer(ActualHeight / 2, VerticalScross,
+                ActualHeight, ParameterData.VerticalTotal).Position.ToString("####");
+            BottomPos = Posit<double>.GetValueFromViewer(0, VerticalScross,
+                ActualHeight, ParameterData.VerticalTotal).Position.ToString("####");
+        }
+
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         #endregion
 
