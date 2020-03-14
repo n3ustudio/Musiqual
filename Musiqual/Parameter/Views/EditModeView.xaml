@@ -39,7 +39,7 @@
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=5}">
             <u:Icon Type="Timeline" Margin="3"/>
         </ToggleButton>
-        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick" IsEnabled="False"
+        <ToggleButton Margin="3" VerticalAlignment="Center" Click="ToggleButton_OnClick"
                       IsChecked="{Binding EditMode.Mode, Converter={x:Static models:EditMode.EditModeConverter}, ConverterParameter=6}">
             <u:Icon Type="PlayStep" Margin="3"/>
         </ToggleButton>
