@@ -4,9 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Musiqual.Playback"
+             xmlns:controls="clr-namespace:NeutrinoStudio.Utilities.Controls;assembly=NeutrinoStudio.Utilities"
              mc:Ignorable="d" 
+             FontFamily="Segoe UI"
+             Background="{DynamicResource ThemeBrushKey}"
+             Foreground="White"
+             SnapsToDevicePixels="True"
+             Name="RootElement"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <MediaElement Name="Player" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <ToggleButton Margin="3" IsChecked="{Binding IsSoundLoaded, Mode=TwoWay}" VerticalAlignment="Center">
+                    <controls:Icon Type="FileDestination" Margin="3"/>
+                </ToggleButton>
+                <TextBlock Margin="3" VerticalAlignment="Center" Text="{Binding ElementName=RootElement, Path=SoundPath}"/>
+            </StackPanel>
+            <Slider Name="VolumeSlider" Grid.Column="1" Margin="3" Maximum="1" Minimum="0" VerticalAlignment="Center"
+                    Value="{Binding ElementName=Player, Path=Volume, Mode=OneWayToSource}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Slider Name="PlaybackSlider" Margin="3" IsEnabled="{Binding IsSoundLoaded, Mode=OneWay}"
+                    ValueChanged="PlaybackSlider_OnValueChanged" Value="{Binding ElementName=Player, Path=Position.TotalMilliseconds, Mode=OneWay}"/>
+        </Grid>
     </Grid>
 </UserControl>

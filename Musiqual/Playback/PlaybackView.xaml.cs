@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Media;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using YDock.Interface;
 
 namespace Musiqual.Playback
@@ -33,7 +33,7 @@ namespace Musiqual.Playback
 
         #region Current
 
-        public PlaybackView Current { get; set; } = new PlaybackView();
+        public static PlaybackView Current { get; } = new PlaybackView();
 
         #endregion
 
@@ -46,16 +46,63 @@ namespace Musiqual.Playback
             get => _isSoundLoaded;
             set
             {
+                if (!_isSoundLoaded && value) LoadSound();
+                else if (!value && _isSoundLoaded) UnloadSound();
                 _isSoundLoaded = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _soundPath = "";
+
+        public string SoundPath
+        {
+            get => _soundPath;
+            set
+            {
+                _soundPath = value;
+                Player.Source = new Uri(value);
                 OnPropertyChanged();
             }
         }
 
         #endregion
 
-        #region Core
+        #region LoadSound
 
-        private SoundPlayer _sp = new SoundPlayer();
+        private void LoadSound()
+        {
+
+            CommonOpenFileDialog fileDialog = new CommonOpenFileDialog
+            {
+                Title = "Choose Wave Files",
+                DefaultDirectory = Environment.CurrentDirectory,
+                IsFolderPicker = false,
+                AllowNonFileSystemItems = true,
+                EnsurePathExists = true,
+                Multiselect = false,
+                Filters = { new CommonFileDialogFilter("Wave", ".wav") },
+                EnsureFileExists = true
+            };
+
+            if (fileDialog.ShowDialog() != CommonFileDialogResult.Ok)
+            {
+                IsSoundLoaded = false;
+                return;
+            }
+            SoundPath = fileDialog.FileName;
+            Player.Play();
+            Player.Pause();
+            PlaybackSlider.Maximum = Player.NaturalDuration.TimeSpan.TotalMilliseconds;
+
+        }
+
+        private void UnloadSound()
+        {
+            if (!Player.IsLoaded) return;
+            Player.Stop();
+            PlaybackSlider.Value = 0;
+        }
 
         #endregion
 
@@ -75,6 +122,15 @@ namespace Musiqual.Playback
         public IDockControl DockControl { get; set; }
         public string Header => "Playback";
         public ImageSource Icon => null;
+
+        #endregion
+
+        #region Event Handler
+
+        private void PlaybackSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Player.Position = new TimeSpan(0, 0, 0, 0, (int)PlaybackSlider.Value);
+        }
 
         #endregion
 
