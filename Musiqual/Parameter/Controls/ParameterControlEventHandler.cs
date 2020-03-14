@@ -80,52 +80,25 @@ namespace Musiqual.Parameter.Controls
         private void ParameterControl_OnMouseMove(object sender, MouseEventArgs e)
         {
             Point position = e.GetPosition(this);
-            UpdateTarget(position);
-            if (_target is null) return;
-            double value = position.Y;
+            KeyValuePair<int, double> newPosition = new KeyValuePair<int, double>(
+                Posit<int>.GetPositFromViewer(position.X, HorizontalScross, ActualWidth, ParameterData.HorizontalTotal).Position,
+                ActualHeight - position.Y);
 
-            if (!_isMouseDown)
-            {
-                // Idle
-                // TODO
-                return;
-            }
-            switch (EditMode.Mode)
-            {
-                case EditModeEnum.Pencil:
-                {
-                    if (_hitTarget)
-                    {
-                        _target.Value.Position = value;
-                        //UpdateView();
-                    }
-                    else
-                    {
-                        Models.Parameter parameter = new Models.Parameter(
-                            new Posit<int>(ParameterData.HorizontalTotal, _mousePosition, 0),
-                            Posit<double>.GetValueFromViewer(value, VerticalScross, ActualHeight, VerticalScross.Total));
-                        ParameterData.ParameterList.Add(parameter);
-                        FrameParameterContainer.Children.Add(parameter);
-                        UpdateView();
-                    }
-                    break;
-                }
-                case EditModeEnum.Eraser:
-                {
-                    if (_hitTarget)
-                    {
-                        FrameParameterContainer.Children.Remove(_target);
-                        ParameterData.ParameterList.Remove(_target);
-                        //UpdateView();
-                    }
-                    break;
-                }
-                default: // Arrow
-                {
-                    DragRect(position.X);
-                    break;
-                }
-            }
+            int posDelta = Math.Abs(_mousePosition.Key - newPosition.Key);
+            double valueDelta = newPosition.Value - _mousePosition.Value;
+            if (newPosition.Key > _mousePosition.Key)
+                for (int i = _mousePosition.Key; i <= newPosition.Key; i++)
+                    UpdateTargetAndData(position.X, new KeyValuePair<int, double>(
+                        i,
+                        _mousePosition.Value + valueDelta / posDelta * (i - _mousePosition.Key)));
+            else if (newPosition.Key < _mousePosition.Key)
+                for (int i = newPosition.Key; i <= _mousePosition.Key; i++)
+                    UpdateTargetAndData(position.X, new KeyValuePair<int, double>(
+                        i,
+                        _mousePosition.Value - valueDelta / posDelta * (i - _mousePosition.Key)));
+            else UpdateTargetAndData(position.X, newPosition);
+
+            _mousePosition = newPosition;
         }
         
         private void ParameterControl_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

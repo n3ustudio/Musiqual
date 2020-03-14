@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Musiqual.Editor.Models;
 using Scrosser.Models;
 
 namespace Musiqual.Parameter.Controls
@@ -101,21 +102,74 @@ namespace Musiqual.Parameter.Controls
 
         #region UpdateTarget
 
-        private void UpdateTarget(Point position)
+        private void UpdateTargetAndData(double x, KeyValuePair<int, double> position)
+        {
+            UpdateTarget(position);
+            UpdateData(x, position);
+        }
+
+        private void UpdateTarget(KeyValuePair<int, double> position)
         {
             Models.Parameter p = null;
             foreach (Models.Parameter parameter in ParameterData.ParameterList)
             {
-                double left = parameter.Margin.Left;
-                if (left > position.X) continue;
+                int pos = parameter.Position.Position;
+                if (pos > position.Key) continue;
                 if (p is null) p = parameter;
-                else if (left < p.Margin.Left) p = parameter;
+                else if (pos > p.Position.Position) p = parameter;
             }
 
             _target = p;
-            _mousePosition = Posit<int>.GetPositFromViewer(position.X, HorizontalScross, ActualWidth, ParameterData.HorizontalTotal).Position;
             if (_target is null) _hitTarget = false;
-            else  _hitTarget = _mousePosition == _target.Position.Position;
+            else _hitTarget = position.Key == _target.Position.Position;
+        }
+
+        private void UpdateData(double x, KeyValuePair<int, double> position)
+        {
+            if (_target is null) return;
+
+            if (!_isMouseDown)
+            {
+                // Idle
+                // TODO
+                return;
+            }
+            switch (EditMode.Mode)
+            {
+                case EditModeEnum.Pencil:
+                {
+                    if (_hitTarget)
+                    {
+                        _target.Value.Position = position.Value;
+                        UpdateView();
+                    }
+                    else
+                    {
+                        Models.Parameter parameter = new Models.Parameter(
+                            new Posit<int>(ParameterData.HorizontalTotal, position.Key, 0),
+                            Posit<double>.GetValueFromViewer(position.Value, VerticalScross, ActualHeight, VerticalScross.Total));
+                        ParameterData.ParameterList.Add(parameter);
+                        FrameParameterContainer.Children.Add(parameter);
+                        UpdateView();
+                    }
+                    break;
+                }
+                case EditModeEnum.Eraser:
+                {
+                    if (_hitTarget)
+                    {
+                        FrameParameterContainer.Children.Remove(_target);
+                        ParameterData.ParameterList.Remove(_target);
+                        UpdateView();
+                    }
+                    break;
+                }
+                default: // Arrow
+                {
+                    DragRect(x);
+                    break;
+                }
+            }
         }
 
         #endregion
