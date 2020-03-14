@@ -32,7 +32,7 @@
                         IsChecked="{Binding ElementName=RootElement, Path=IsSoundPlaying, Mode=TwoWay}">
                     <controls:Icon Type="Run" Margin="3"/>
                 </ToggleButton>
-                <TextBlock Margin="3" VerticalAlignment="Center" Text="{Binding ElementName=RootElement, Path=SoundPath}"/>
+                <TextBlock Margin="3" VerticalAlignment="Center" Text="{Binding ElementName=RootElement, Path=SoundPath, Mode=OneWay}"/>
             </StackPanel>
             <Slider Grid.Column="1" Margin="3" Maximum="1" Minimum="0" VerticalAlignment="Center"
                     Value="{Binding ElementName=Player, Path=Volume, Mode=OneWayToSource}"/>
