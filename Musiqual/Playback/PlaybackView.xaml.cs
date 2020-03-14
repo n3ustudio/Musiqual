@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Scrosser.Models;
 using YDock.Interface;
 
 namespace Musiqual.Playback
@@ -171,6 +172,20 @@ namespace Musiqual.Playback
         {
             _timer.Stop();
             Player.Pause();
+        }
+
+        #endregion
+
+        #region Interface
+
+        public void SetPosition(Posit<int> posit)
+        {
+            Dispatcher.CurrentDispatcher.Invoke(() =>
+            {
+                Player.Position = new TimeSpan(0, 0, 0, 0,
+                    (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
+                PlaybackSlider.Value = Player.Position.TotalMilliseconds;
+            });
         }
 
         #endregion
