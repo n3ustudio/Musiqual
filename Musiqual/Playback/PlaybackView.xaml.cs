@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using YDock.Interface;
 
@@ -28,7 +29,15 @@ namespace Musiqual.Playback
 
         public PlaybackView()
         {
+
             InitializeComponent();
+
+            _timer = new DispatcherTimer(
+                TimeSpan.FromSeconds(0.5),
+                DispatcherPriority.Normal,
+                (sender, args) => PlaybackSlider.Value = Player.Position.TotalMilliseconds,
+                Dispatcher.CurrentDispatcher);
+
         }
 
         #region Current
@@ -49,6 +58,20 @@ namespace Musiqual.Playback
                 if (!_isSoundLoaded && value) LoadSound();
                 else if (!value && _isSoundLoaded) UnloadSound();
                 _isSoundLoaded = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isSoundPlaying;
+
+        public bool IsSoundPlaying
+        {
+            get => _isSoundPlaying;
+            set
+            {
+                if (!_isSoundPlaying && value) PlaySound();
+                if (!value && _isSoundPlaying) PauseSound();
+                _isSoundPlaying = value;
                 OnPropertyChanged();
             }
         }
@@ -91,9 +114,6 @@ namespace Musiqual.Playback
                 return;
             }
             SoundPath = fileDialog.FileName;
-            Player.Play();
-            Player.Pause();
-            PlaybackSlider.Maximum = Player.NaturalDuration.TimeSpan.TotalMilliseconds;
 
         }
 
@@ -131,6 +151,33 @@ namespace Musiqual.Playback
         {
             Player.Position = new TimeSpan(0, 0, 0, 0, (int)PlaybackSlider.Value);
         }
+
+        private void Player_OnMediaOpened(object sender, RoutedEventArgs e)
+        {
+            PlaybackSlider.Maximum = Player.NaturalDuration.TimeSpan.TotalMilliseconds;
+        }
+
+        #endregion
+
+        #region Utilities
+
+        private void PlaySound()
+        {
+            _timer.Start();
+            Player.Play();
+        }
+
+        private void PauseSound()
+        {
+            _timer.Stop();
+            Player.Pause();
+        }
+
+        #endregion
+
+        #region Timer
+
+        private DispatcherTimer _timer;
 
         #endregion
 
