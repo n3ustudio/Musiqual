@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Parameter\Views\EditModeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Parameter\Views\ParameterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -80,9 +84,13 @@
       <DependentUpon>ParameterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Parameter\ParameterData.cs" />
+    <Compile Include="Parameter\Views\EditModeView.xaml.cs">
+      <DependentUpon>EditModeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Parameter\Views\ParameterView.xaml.cs">
       <DependentUpon>ParameterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
