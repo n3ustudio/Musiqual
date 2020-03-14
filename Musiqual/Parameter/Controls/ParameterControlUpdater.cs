@@ -43,6 +43,14 @@ namespace Musiqual.Parameter.Controls
                 FrameParameterContainer.Children.Add(parameter);
             }
 
+            EditMode.PropertyChanged += (o, args) =>
+            {
+                if (EditMode.Mode == EditModeEnum.Pencil || EditMode.Mode == EditModeEnum.Eraser)
+                    Cursor = Cursors.Cross;
+                else
+                    Cursor = Cursors.Arrow;
+            };
+
             HorizontalScross.PropertyChanged += (o, args) => UpdateView();
             HorizontalScross.PropertyChanged += (o, args) =>
             {
