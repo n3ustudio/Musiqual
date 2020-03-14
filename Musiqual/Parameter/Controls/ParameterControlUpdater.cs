@@ -147,7 +147,7 @@ namespace Musiqual.Parameter.Controls
                     {
                         Models.Parameter parameter = new Models.Parameter(
                             new Posit<int>(ParameterData.HorizontalTotal, position.Key, 0),
-                            Posit<double>.GetValueFromViewer(position.Value, VerticalScross, ActualHeight, VerticalScross.Total));
+                            Posit<double>.GetValueFromViewer(position.Value, VerticalScross, ActualHeight, ParameterData.VerticalTotal));
                         ParameterData.ParameterList.Add(parameter);
                         FrameParameterContainer.Children.Add(parameter);
                         UpdateView();
