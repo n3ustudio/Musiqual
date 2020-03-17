@@ -61,6 +61,7 @@
             <TextBlock Foreground="#33FFFFFF" Text="{Binding BottomPos}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="2"/>
         </Grid>
         <Canvas x:Name="FrameParameterContainer" IsHitTestVisible="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Grid x:Name="FrameTimeMark" Background="White" Width="1" HorizontalAlignment="Left" Visibility="Collapsed"/>
         <Canvas x:Name="FrameDrag" IsHitTestVisible="False" Visibility="Collapsed"
                 Width="0" Background="#55FFFFFF" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
     </Grid>

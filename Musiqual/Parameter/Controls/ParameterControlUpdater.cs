@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Musiqual.Editor.Models;
+using Musiqual.Parameter.Views;
+using Musiqual.Playback;
 using Scrosser.Models;
 
 namespace Musiqual.Parameter.Controls
@@ -49,6 +51,25 @@ namespace Musiqual.Parameter.Controls
                     Cursor = Cursors.Cross;
                 else
                     Cursor = Cursors.Arrow;
+            };
+
+            PlaybackView.Current.PositionChanged += posit =>
+            {
+                if (AutoScrollView.Current.IsAutoScrollEnabled)
+                {
+                    Posit<int> conv = new Posit<int>(
+                        ParameterData.HorizontalTotal,
+                        (int)Math.Floor(posit.Position * ParameterData.HorizontalTotal / posit.Total),
+                        0);
+                    var (v, p) = conv.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
+                    if (v != Visibility.Visible)
+                        FrameTimeMark.Visibility = Visibility.Collapsed;
+                    else
+                    {
+                        FrameTimeMark.Visibility = Visibility.Visible;
+                        FrameTimeMark.Margin = new Thickness(p, 0, 0, 0);
+                    }
+                }
             };
 
             HorizontalScross.PropertyChanged += (o, args) => UpdateView();
