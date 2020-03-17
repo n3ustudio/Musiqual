@@ -34,9 +34,14 @@ namespace Musiqual.Playback
             InitializeComponent();
 
             _timer = new DispatcherTimer(
-                TimeSpan.FromSeconds(0.5),
+                TimeSpan.FromSeconds(0.2),
                 DispatcherPriority.Normal,
-                (sender, args) => PlaybackSlider.Value = Player.Position.TotalMilliseconds,
+                (sender, args) =>
+                {
+                    PlaybackSlider.Value = Player.Position.TotalMilliseconds;
+                    PositionChanged?.Invoke(
+                        new Posit<double>(Player.NaturalDuration.TimeSpan.TotalMilliseconds, Player.Position.TotalMilliseconds, 0));
+                },
                 Dispatcher.CurrentDispatcher);
 
         }
@@ -160,6 +165,14 @@ namespace Musiqual.Playback
 
         #endregion
 
+        #region Event
+
+        public delegate void PositionChangedEventHandler(Posit<double> posit);
+
+        public event PositionChangedEventHandler PositionChanged;
+
+        #endregion
+
         #region Utilities
 
         private void PlaySound()
@@ -198,6 +211,7 @@ namespace Musiqual.Playback
             Player.Position = new TimeSpan(0, 0, 0, 0,
                 (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
             PlaybackSlider.Value = Player.Position.TotalMilliseconds;
+            PositionChanged?.Invoke(new Posit<double>(posit.Total, posit.Position, 0));
         }
 
         #endregion
