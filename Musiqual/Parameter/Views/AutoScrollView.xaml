@@ -4,9 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Musiqual.Parameter.Views"
+             xmlns:u="clr-namespace:NeutrinoStudio.Utilities.Controls;assembly=NeutrinoStudio.Utilities"
              mc:Ignorable="d" 
+             FontFamily="Segoe UI"
+             Background="{DynamicResource ThemeBrushKey}"
+             Foreground="White"
+             SnapsToDevicePixels="True"
+             Name="RootElement"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left"
+                DataContext="{Binding ElementName=RootElement}">
+        <ToggleButton Margin="3" VerticalAlignment="Center" IsChecked="{Binding IsAutoScrollEnabled, Mode=TwoWay}">
+            <u:Icon Type="AutoscrollToCurrentFrame" Margin="3"/>
+        </ToggleButton>
+    </StackPanel>
 </UserControl>
