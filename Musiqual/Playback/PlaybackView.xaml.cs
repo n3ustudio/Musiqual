@@ -179,6 +179,7 @@ namespace Musiqual.Playback
             string tmp = SoundPath;
             Player.Close();
             SoundPath = tmp;
+            Player.Volume = VolumeSlider.Value;
         }
 
         #endregion

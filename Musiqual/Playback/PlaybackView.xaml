@@ -38,7 +38,7 @@
                 </ToggleButton>
                 <TextBlock Margin="3" VerticalAlignment="Center" Text="{Binding ElementName=RootElement, Path=SoundPath, Mode=OneWay}"/>
             </StackPanel>
-            <Slider Grid.Column="1" Margin="3" Maximum="1" Minimum="0" VerticalAlignment="Center"
+            <Slider Name="VolumeSlider" Grid.Column="1" Margin="3" Maximum="1" Minimum="0" VerticalAlignment="Center"
                     Value="{Binding ElementName=Player, Path=Volume, Mode=OneWayToSource}"/>
         </Grid>
         <Grid Grid.Row="1">
