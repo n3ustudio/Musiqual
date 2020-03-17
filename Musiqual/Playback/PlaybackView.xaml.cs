@@ -39,8 +39,15 @@ namespace Musiqual.Playback
                 (sender, args) =>
                 {
                     PlaybackSlider.Value = Player.Position.TotalMilliseconds;
-                    PositionChanged?.Invoke(
-                        new Posit<double>(Player.NaturalDuration.TimeSpan.TotalMilliseconds, Player.Position.TotalMilliseconds, 0));
+                    try
+                    {
+                        PositionChanged?.Invoke(
+                            new Posit<double>(Player.NaturalDuration.TimeSpan.TotalMilliseconds, Player.Position.TotalMilliseconds, 0));
+                    }
+                    catch (Exception e)
+                    {
+                        // Ignore
+                    }
                 },
                 Dispatcher.CurrentDispatcher);
 
