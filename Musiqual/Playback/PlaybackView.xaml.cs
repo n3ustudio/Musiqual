@@ -189,12 +189,15 @@ namespace Musiqual.Playback
         public void SetPosition(Posit<int> posit)
         {
             if (!IsSoundLoaded) return;
-            Dispatcher.CurrentDispatcher.Invoke(() =>
-            {
-                Player.Position = new TimeSpan(0, 0, 0, 0,
-                    (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
-                PlaybackSlider.Value = Player.Position.TotalMilliseconds;
-            });
+            //Dispatcher.CurrentDispatcher.Invoke(() =>
+            //{
+            //    Player.Position = new TimeSpan(0, 0, 0, 0,
+            //        (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
+            //    PlaybackSlider.Value = Player.Position.TotalMilliseconds;
+            //});
+            Player.Position = new TimeSpan(0, 0, 0, 0,
+                (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
+            PlaybackSlider.Value = Player.Position.TotalMilliseconds;
         }
 
         #endregion
