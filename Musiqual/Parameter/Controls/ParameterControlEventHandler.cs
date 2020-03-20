@@ -75,7 +75,6 @@ namespace Musiqual.Parameter.Controls
             {
                 PlaybackView.Current.SetPosition(Posit<int>.GetPositFromViewer(position.X, HorizontalScross,
                     ActualWidth, ParameterData.HorizontalTotal));
-                return;
             }
             _isMouseDown = true;
         }

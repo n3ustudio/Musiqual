@@ -183,6 +183,12 @@ namespace Musiqual.Parameter.Controls
                     }
                     break;
                 }
+                case EditModeEnum.Playback:
+                {
+                    PlaybackView.Current.SetPosition(Posit<int>.GetPositFromViewer(x, HorizontalScross,
+                        ActualWidth, ParameterData.HorizontalTotal));
+                    break;
+                }
                 default: // Arrow
                 {
                     DragRect(x);
