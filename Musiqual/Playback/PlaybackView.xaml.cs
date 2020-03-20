@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace Musiqual.Playback
             InitializeComponent();
 
             _timer = new DispatcherTimer(
-                TimeSpan.FromSeconds(0.2),
+                TimeSpan.FromSeconds(0.1),
                 DispatcherPriority.Normal,
                 (sender, args) =>
                 {
