@@ -63,6 +63,25 @@ namespace Musiqual.Parameter.Controls
                         0);
                     var (v, p) = conv.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
                     if (v != Visibility.Visible)
+                    {
+                        //FrameTimeMark.Visibility = Visibility.Collapsed;
+                        // TODO
+                    }
+                    else
+                    {
+                        FrameTimeMark.Visibility = Visibility.Visible;
+                        FrameTimeMark.Margin = new Thickness(p, 0, 0, 0);
+                        if (ActualWidth - p < 150 && HorizontalScross.Position + 1200 <= HorizontalScross.Total) HorizontalScross.Position += 1200;
+                    }
+                }
+                else
+                {
+                    Posit<int> conv = new Posit<int>(
+                        ParameterData.HorizontalTotal,
+                        (int)Math.Floor(posit.Position * ParameterData.HorizontalTotal / posit.Total),
+                        0);
+                    var (v, p) = conv.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
+                    if (v != Visibility.Visible)
                         FrameTimeMark.Visibility = Visibility.Collapsed;
                     else
                     {
