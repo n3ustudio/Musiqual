@@ -197,10 +197,14 @@ namespace Musiqual.Parameter.Controls
 
         private void UpdateTimeLine()
         {
-            if (PlaybackView.Current is null) return;
+            if (PlaybackView.Current is null || !PlaybackView.Current.IsSoundLoaded ||
+                PlaybackView.Current.SoundPosition is null)
+            {
+                FrameTimeMark.Visibility = Visibility.Collapsed;
+                return;
+            }
             if (!PlaybackView.Current.IsSoundLoaded) return;
             Posit<double> posit = PlaybackView.Current.SoundPosition;
-            if (posit is null) return;
             if (AutoScrollView.Current.IsAutoScrollEnabled)
             {
                 Posit<int> conv = new Posit<int>(
