@@ -53,42 +53,9 @@ namespace Musiqual.Parameter.Controls
                     Cursor = Cursors.Arrow;
             };
 
-            PlaybackView.Current.PositionChanged += posit =>
+            PlaybackView.Current.PropertyChanged += (o, args) =>
             {
-                if (AutoScrollView.Current.IsAutoScrollEnabled)
-                {
-                    Posit<int> conv = new Posit<int>(
-                        ParameterData.HorizontalTotal,
-                        (int)Math.Floor(posit.Position * ParameterData.HorizontalTotal / posit.Total),
-                        0);
-                    var (v, p) = conv.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
-                    if (v != Visibility.Visible)
-                    {
-                        //FrameTimeMark.Visibility = Visibility.Collapsed;
-                        // TODO
-                    }
-                    else
-                    {
-                        FrameTimeMark.Visibility = Visibility.Visible;
-                        FrameTimeMark.Margin = new Thickness(p, 0, 0, 0);
-                        if (ActualWidth - p < 150 && HorizontalScross.Position + 1200 <= HorizontalScross.Total) HorizontalScross.Position += 1200;
-                    }
-                }
-                else
-                {
-                    Posit<int> conv = new Posit<int>(
-                        ParameterData.HorizontalTotal,
-                        (int)Math.Floor(posit.Position * ParameterData.HorizontalTotal / posit.Total),
-                        0);
-                    var (v, p) = conv.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
-                    if (v != Visibility.Visible)
-                        FrameTimeMark.Visibility = Visibility.Collapsed;
-                    else
-                    {
-                        FrameTimeMark.Visibility = Visibility.Visible;
-                        FrameTimeMark.Margin = new Thickness(p, 0, 0, 0);
-                    }
-                }
+                if (args.PropertyName == nameof(PlaybackView.Current.SoundPosition)) UpdateTimeLine();
             };
 
             HorizontalScross.PropertyChanged += (o, args) => UpdateView();
@@ -146,6 +113,7 @@ namespace Musiqual.Parameter.Controls
                 parameter.Margin = new Thickness(
                     left, top, 0, 0);
             }
+            UpdateTimeLine();
         }
 
         #endregion
@@ -219,6 +187,52 @@ namespace Musiqual.Parameter.Controls
                 {
                     DragRect(x);
                     break;
+                }
+            }
+        }
+
+        #endregion
+
+        #region UpdateTimeline
+
+        private void UpdateTimeLine()
+        {
+            if (PlaybackView.Current is null) return;
+            if (!PlaybackView.Current.IsSoundLoaded) return;
+            Posit<double> posit = PlaybackView.Current.SoundPosition;
+            if (posit is null) return;
+            if (AutoScrollView.Current.IsAutoScrollEnabled)
+            {
+                Posit<int> conv = new Posit<int>(
+                    ParameterData.HorizontalTotal,
+                    (int)Math.Floor(posit.Position * ParameterData.HorizontalTotal / posit.Total),
+                    0);
+                var (v, p) = conv.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
+                if (v != Visibility.Visible)
+                {
+                    //FrameTimeMark.Visibility = Visibility.Collapsed;
+                    // TODO
+                }
+                else
+                {
+                    FrameTimeMark.Visibility = Visibility.Visible;
+                    FrameTimeMark.Margin = new Thickness(p, 0, 0, 0);
+                    if (ActualWidth - p < 150 && HorizontalScross.Position + 1200 <= HorizontalScross.Total) HorizontalScross.Position += 1200;
+                }
+            }
+            else
+            {
+                Posit<int> conv = new Posit<int>(
+                    ParameterData.HorizontalTotal,
+                    (int)Math.Floor(posit.Position * ParameterData.HorizontalTotal / posit.Total),
+                    0);
+                var (v, p) = conv.GetHorizontalPosition(HorizontalScross, ActualWidth, (d, i) => d - i);
+                if (v != Visibility.Visible)
+                    FrameTimeMark.Visibility = Visibility.Collapsed;
+                else
+                {
+                    FrameTimeMark.Visibility = Visibility.Visible;
+                    FrameTimeMark.Margin = new Thickness(p, 0, 0, 0);
                 }
             }
         }
