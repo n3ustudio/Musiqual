@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -215,8 +215,15 @@ namespace Musiqual.Playback
             //        (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
             //    PlaybackSlider.Value = Player.Position.TotalMilliseconds;
             //});
-            Player.Position = new TimeSpan(0, 0, 0, 0,
-                (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
+            try
+            {
+                Player.Position = new TimeSpan(0, 0, 0, 0,
+                    (int)Math.Floor(posit.Position * Player.NaturalDuration.TimeSpan.TotalMilliseconds / posit.Total));
+            }
+            catch (Exception e)
+            {
+                // Ignore
+            }
             PlaybackSlider.Value = Player.Position.TotalMilliseconds;
             PositionChanged?.Invoke(new Posit<double>(posit.Total, posit.Position, 0));
         }
