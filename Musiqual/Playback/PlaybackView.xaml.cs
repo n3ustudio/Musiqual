@@ -41,8 +41,9 @@ namespace Musiqual.Playback
                     PlaybackSlider.Value = Player.Position.TotalMilliseconds;
                     try
                     {
-                        PositionChanged?.Invoke(
-                            new Posit<double>(Player.NaturalDuration.TimeSpan.TotalMilliseconds, Player.Position.TotalMilliseconds, 0));
+                        SoundPosition =
+                            new Posit<double>(Player.NaturalDuration.TimeSpan.TotalMilliseconds,
+                                Player.Position.TotalMilliseconds, 0);
                     }
                     catch (Exception e)
                     {
@@ -98,6 +99,18 @@ namespace Musiqual.Playback
             {
                 _soundPath = value;
                 Player.Source = new Uri(value);
+                OnPropertyChanged();
+            }
+        }
+
+        private Posit<double> _soundPosition = new Posit<double>(0, 0, 0);
+
+        public Posit<double> SoundPosition
+        {
+            get => _soundPosition;
+            set
+            {
+                _soundPosition = value;
                 OnPropertyChanged();
             }
         }
@@ -172,14 +185,6 @@ namespace Musiqual.Playback
 
         #endregion
 
-        #region Event
-
-        public delegate void PositionChangedEventHandler(Posit<double> posit);
-
-        public event PositionChangedEventHandler PositionChanged;
-
-        #endregion
-
         #region Utilities
 
         private void PlaySound()
@@ -225,7 +230,7 @@ namespace Musiqual.Playback
                 // Ignore
             }
             PlaybackSlider.Value = Player.Position.TotalMilliseconds;
-            PositionChanged?.Invoke(new Posit<double>(posit.Total, posit.Position, 0));
+            SoundPosition = new Posit<double>(posit.Total, posit.Position, 0);
         }
 
         #endregion
