@@ -38,16 +38,19 @@ namespace Musiqual.Playback
                 DispatcherPriority.Normal,
                 (sender, args) =>
                 {
-                    PlaybackSlider.Value = Player.Position.TotalMilliseconds;
-                    try
+                    if (IsSoundLoaded)
                     {
-                        SoundPosition =
-                            new Posit<double>(Player.NaturalDuration.TimeSpan.TotalMilliseconds,
-                                Player.Position.TotalMilliseconds, 0);
-                    }
-                    catch (Exception e)
-                    {
-                        // Ignore
+                        PlaybackSlider.Value = Player.Position.TotalMilliseconds;
+                        try
+                        {
+                            SoundPosition =
+                                new Posit<double>(Player.NaturalDuration.TimeSpan.TotalMilliseconds,
+                                    Player.Position.TotalMilliseconds, 0);
+                        }
+                        catch (Exception e)
+                        {
+                            // Ignore
+                        }
                     }
                 },
                 Dispatcher.CurrentDispatcher);
